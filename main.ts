@@ -12,6 +12,9 @@ import manifest from "./fresh.gen.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
+import { ga4Plugin } from "ga4/mod.ts";
 import inject from "./inject.ts";
 
-await start(manifest, { plugins: [twindPlugin(twindConfig), inject] });
+await start(manifest, {
+  plugins: [twindPlugin(twindConfig), inject, ga4Plugin()],
+});
