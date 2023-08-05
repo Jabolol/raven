@@ -11,7 +11,7 @@ export default function Post(
   };
 
   return (
-    <div className="mx-auto max-w-md p-4 dark:bg-gray-800">
+    <div className="mt-4 mx-auto max-w-md p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md">
       <div className="flex items-center">
         <img
           src={user.profilePicture.url}
@@ -20,7 +20,7 @@ export default function Post(
         />
         <div>
           <p className="text-sm font-semibold dark:text-white">
-            {user.username}
+            @{user.username}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-300">{region}</p>
         </div>
@@ -46,8 +46,8 @@ export default function Post(
           >
           </div>
         )}
-        <div className="mt-2 text-sm dark:text-white">{post.caption}</div>
       </div>
+      <p className="mt-2 text-sm dark:text-white">{post.caption}</p>
     </div>
   );
 }
