@@ -4,7 +4,7 @@ import Navbar from "../islands/Navbar.tsx";
 
 import { useEffect, useState } from "preact/hooks";
 
-import { store } from "../state/auth.ts";
+import { isLoggedIn, store } from "../state/auth.ts";
 
 export default function App() {
   const [isLogged, setIsLoggedIn] = useState<boolean>(false);
@@ -13,6 +13,7 @@ export default function App() {
     store.subscribe((v) => {
       setIsLoggedIn(v.loggedIn);
     });
+    setIsLoggedIn(isLoggedIn.value);
   }, []);
 
   return (
