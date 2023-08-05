@@ -23,8 +23,8 @@ export default function Feed() {
       </div>
     )
     : (
-      <>
-        {feed.value.friendsPosts.map((post) => <Post {...post} />)}
-      </>
+      <div className="pb-8">
+        {feed.value.friendsPosts.reverse().map((post) => <Post {...post} />)}
+      </div>
     ));
 }
