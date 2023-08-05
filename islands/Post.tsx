@@ -11,7 +11,7 @@ export default function Post(
   };
 
   return (
-    <div className="p-4 dark:bg-gray-800">
+    <div className="mx-auto max-w-md p-4 dark:bg-gray-800">
       <div className="flex items-center">
         <img
           src={user.profilePicture.url}
