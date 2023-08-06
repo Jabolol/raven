@@ -22,7 +22,7 @@ export default function User({ id }: { id: string }) {
     <div
       className={`profile-page ${
         friend.isRealPeople ? "real-people" : ""
-      } dark:bg-gray-800 dark:text-white min-h-screen`}
+      } dark:bg-gray-800 dark:text-white min-h-screen max-w-md mx-auto`}
     >
       <div
         className={`profile-header ${
