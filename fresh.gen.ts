@@ -7,14 +7,18 @@ import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/api/feed.ts";
 import * as $3 from "./routes/api/refresh.ts";
 import * as $4 from "./routes/api/send.ts";
-import * as $5 from "./routes/api/verify.ts";
-import * as $6 from "./routes/index.tsx";
+import * as $5 from "./routes/api/user.ts";
+import * as $6 from "./routes/api/verify.ts";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/user/[id].tsx";
 import * as $$0 from "./islands/App.tsx";
 import * as $$1 from "./islands/Entry.tsx";
 import * as $$2 from "./islands/Feed.tsx";
-import * as $$3 from "./islands/Login.tsx";
-import * as $$4 from "./islands/Navbar.tsx";
-import * as $$5 from "./islands/Post.tsx";
+import * as $$3 from "./islands/Info.tsx";
+import * as $$4 from "./islands/Login.tsx";
+import * as $$5 from "./islands/Navbar.tsx";
+import * as $$6 from "./islands/Post.tsx";
+import * as $$7 from "./islands/User.tsx";
 
 const manifest = {
   routes: {
@@ -23,16 +27,20 @@ const manifest = {
     "./routes/api/feed.ts": $2,
     "./routes/api/refresh.ts": $3,
     "./routes/api/send.ts": $4,
-    "./routes/api/verify.ts": $5,
-    "./routes/index.tsx": $6,
+    "./routes/api/user.ts": $5,
+    "./routes/api/verify.ts": $6,
+    "./routes/index.tsx": $7,
+    "./routes/user/[id].tsx": $8,
   },
   islands: {
     "./islands/App.tsx": $$0,
     "./islands/Entry.tsx": $$1,
     "./islands/Feed.tsx": $$2,
-    "./islands/Login.tsx": $$3,
-    "./islands/Navbar.tsx": $$4,
-    "./islands/Post.tsx": $$5,
+    "./islands/Info.tsx": $$3,
+    "./islands/Login.tsx": $$4,
+    "./islands/Navbar.tsx": $$5,
+    "./islands/Post.tsx": $$6,
+    "./islands/User.tsx": $$7,
   },
   baseUrl: import.meta.url,
 };
