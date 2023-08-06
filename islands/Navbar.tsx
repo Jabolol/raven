@@ -7,14 +7,12 @@ import IconReload from "icons/reload.tsx";
 import IconArrowBigLeft from "icons/arrow-big-left.tsx";
 import IconUser from "icons/user.tsx";
 import { logout } from "../state/auth.ts";
-import { fetchMe, me } from "../state/me.ts";
 
 export default function Navbar({ isLogged }: { isLogged: boolean }) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     setIsDarkMode(document.body.classList.contains("dark"));
-    fetchMe();
   }, []);
 
   const toggleDarkMode = () => {
@@ -47,17 +45,11 @@ export default function Navbar({ isLogged }: { isLogged: boolean }) {
             ? <IconSun onClick={toggleDarkMode} className="cursor-pointer" />
             : <IconMoon onClick={toggleDarkMode} className="cursor-pointer" />}
           {isLogged
-            ? me.value === null
-              ? <IconUser className="w-6 h-6 rounded-full cursor-pointer" />
-              : (
-                <a href="/me">
-                  <img
-                    src={me.value.profilePicture.url}
-                    alt={me.value.username}
-                    className={`w-6 h-6 rounded-full cursor-pointer`}
-                  />
-                </a>
-              )
+            ? (
+              <a href="/me">
+                <IconUser className="w-6 h-6 rounded-full cursor-pointer" />
+              </a>
+            )
             : (
               <a
                 href="https://github.com/Jabolol/raven"
