@@ -22,7 +22,7 @@ export default function User({ id }: { id: string }) {
     <div
       className={`profile-page ${
         friend.isRealPeople ? "real-people" : ""
-      } dark:bg-gray-800 dark:text-white min-h-screen max-w-md mx-auto`}
+      } dark:bg-gray-800 dark:text-white min-h-screen max-w-md mx-auto pb-4`}
     >
       <div
         className={`profile-header ${
@@ -48,23 +48,23 @@ export default function User({ id }: { id: string }) {
           </p>
         </div>
       </div>
-      <div className="common-friends mt-10 pb-4">
-        <h2 className="text-2xl font-semibold ml-4">
+      <div className="bg-gray-100 dark:bg-gray-900 p-4 m-4 rounded-md">
+        <h2 className="text-lg font-semibold mb-2">
           Common Friends ({friend.relationship.commonFriends.total})
         </h2>
-        <div className="friend-list grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 mx-4">
+        <div className="grid grid-cols-2 gap-4">
           {friend.relationship.commonFriends.sample.map((commonFriend) => (
             <a
               href={`/user/${commonFriend.id}`}
               key={commonFriend.id}
-              className="friend-card p-4 border rounded-lg shadow-md flex flex-col items-center"
+              className="p-2 rounded-lg bg-white dark:bg-gray-800"
             >
               <img
                 src={commonFriend.profilePicture.url}
                 alt={commonFriend.username}
-                className="friend-picture rounded-full w-16 h-16 mb-2"
+                className="w-full h-auto rounded-md"
               />
-              <p className="friend-username text-sm">
+              <p className="text-xs mt-1">
                 @{commonFriend.username}
               </p>
             </a>
