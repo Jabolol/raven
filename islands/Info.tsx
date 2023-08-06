@@ -3,6 +3,7 @@ import { isLoggedIn, store } from "../state/auth.ts";
 import { fetchFriend } from "../state/user.ts";
 import Navbar from "./Navbar.tsx";
 import User from "./User.tsx";
+import Footer from "../components/Footer.tsx";
 
 export default function Info({ id }: { id: string }) {
   const [isLogged, setIsLoggedIn] = useState<boolean>(false);
@@ -20,6 +21,7 @@ export default function Info({ id }: { id: string }) {
     <main class="bg-white dark:bg-gray-800">
       <Navbar isLogged={isLogged} />
       <User id={id} />
+      <Footer />
     </main>
   );
 }
