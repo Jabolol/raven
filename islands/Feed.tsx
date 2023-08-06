@@ -8,9 +8,13 @@ export default function Feed() {
     fetchFeed();
   }, []);
 
-  return (feed.value === null ? <Spinner /> : (
-    <div className="pb-8">
-      {feed.value.friendsPosts.reverse().map((post) => <Post {...post} />)}
+  return (
+    <div className="flex flex-col items-center justify-center h-full">
+      {feed.value === null ? <Spinner /> : (
+        <div className="pb-8">
+          {feed.value.friendsPosts.reverse().map((post) => <Post {...post} />)}
+        </div>
+      )}
     </div>
-  ));
+  );
 }
