@@ -38,8 +38,9 @@ export default function Post({
     <>
       {posts.map((post) => (
         <div
+          id={post.id}
           key={post.id}
-          className="mt-4 mx-auto max-w-md p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md"
+          className="m-4 mx-auto max-w-md p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md"
         >
           <div className="flex items-center">
             <a href={`/user/${user.id}`}>
