@@ -18,6 +18,7 @@ Safari and selecting "Add to Home Screen".
 - [x] Authorization flow
 - [x] See others BeReal's without posting
 - [x] Friend's info page
+- [x] Me page with all realmojis and friends
 
 # getting started
 
