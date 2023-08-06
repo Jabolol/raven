@@ -17,6 +17,7 @@ Safari and selecting "Add to Home Screen".
 
 - [x] Authorization flow
 - [x] See others BeReal's without posting
+- [x] Friend's info page
 
 # getting started
 
