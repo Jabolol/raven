@@ -137,6 +137,62 @@ export type FriendResp = {
   isRealPeople: boolean;
 };
 
+export type MeResp = {
+  id: string;
+  username: string;
+  birthdate: string;
+  fullname: string;
+  profilePicture: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  realmojis: {
+    id: string;
+    userId: string;
+    emoji: string;
+    media: {
+      url: string;
+      width: number;
+      height: number;
+    };
+  }[];
+  devices: {
+    clientVersion: string;
+    device: string;
+    deviceId: string;
+    platform: string;
+    language: string;
+    timezone: string;
+  }[];
+  canDeletePost: boolean;
+  canPost: boolean;
+  canUpdateRegion: boolean;
+  phoneNumber: string;
+  biography: string;
+  location: string;
+  countryCode: string;
+  region: string;
+  createdAt: string;
+  isRealPeople: boolean;
+};
+
+export type FriendList = {
+  next: never;
+  total: number;
+  data: {
+    id: string;
+    username: string;
+    fullname: string;
+    profilePicture?: {
+      url: string;
+      height: number;
+      width: number;
+    };
+    status: string;
+  }[];
+};
+
 export type AppState =
   | {
     loggedIn: true;
