@@ -1,10 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
-import IconSearch from "icons/search.tsx";
 import IconMoon from "icons/moon.tsx";
 import IconSun from "icons/sun.tsx";
 import IconBrandGithub from "icons/brand-github.tsx";
 import IconLogout from "icons/logout.tsx";
 import IconReload from "icons/reload.tsx";
+import IconArrowBigLeft from "icons/arrow-big-left.tsx";
 import { logout } from "../state/auth.ts";
 
 export default function Navbar({ isLogged }: { isLogged: boolean }) {
@@ -26,20 +26,23 @@ export default function Navbar({ isLogged }: { isLogged: boolean }) {
           isDarkMode ? "dark" : ""
         }`}
       >
+        <a href="/">
+          <div className="flex items-center justify-center p-5 gap-3">
+            <h1 className="text-lg font-semibold">Raven</h1>
+          </div>
+        </a>
         <div className="flex items-center justify-center p-5 gap-3">
-          <h1 className="text-lg font-semibold">Raven</h1>
-        </div>
-        <div className="flex items-center justify-center p-5 gap-3">
-          {isLogged && (
-            <IconReload
-              onClick={() => location.reload()}
-              className="cursor-pointer"
-            />
-          )}
+          <IconArrowBigLeft
+            onClick={() => history.back()}
+            className="cursor-pointer"
+          />
+          <IconReload
+            onClick={() => location.reload()}
+            className="cursor-pointer"
+          />
           {isDarkMode
             ? <IconSun onClick={toggleDarkMode} className="cursor-pointer" />
             : <IconMoon onClick={toggleDarkMode} className="cursor-pointer" />}
-          {isLogged && <IconSearch className="cursor-pointer" />}
           {isLogged
             ? (
               <img
