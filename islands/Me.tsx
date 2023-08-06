@@ -1,13 +1,16 @@
 import { useEffect } from "preact/hooks";
 import Spinner from "../components/Spinner.tsx";
-import { me } from "../state/me.ts";
+import { fetchMe, me } from "../state/me.ts";
 import { fetchFriends, friends } from "../state/friends.ts";
+import { isLoggedIn } from "../state/auth.ts";
 
 export default function Me() {
   const user = me.value;
   const friendList = friends.value;
 
   useEffect(() => {
+    if (!isLoggedIn.value) window.location.href = "/";
+    fetchMe();
     fetchFriends();
   }, []);
 
