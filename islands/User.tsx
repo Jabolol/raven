@@ -30,7 +30,7 @@ export default function User({ id }: { id: string }) {
         } relative`}
       >
         <img
-          src={friend.profilePicture.url}
+          src={(friend.profilePicture ?? { url: "/raven.png" }).url}
           alt={friend.username}
           className="profile-picture w-full h-auto"
         />
@@ -60,7 +60,7 @@ export default function User({ id }: { id: string }) {
               className="p-2 rounded-lg bg-white dark:bg-gray-800"
             >
               <img
-                src={commonFriend.profilePicture.url}
+                src={(commonFriend.profilePicture ?? { url: "/raven.png" }).url}
                 alt={commonFriend.username}
                 className="w-full h-auto rounded-md"
               />
