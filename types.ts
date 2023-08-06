@@ -105,6 +105,38 @@ export type FeedResp = {
   };
 };
 
+export type FriendResp = {
+  id: string;
+  username: string;
+  fullname: string;
+  biography: string;
+  location: string;
+  profilePicture: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  relationship: {
+    status: string;
+    commonFriends: {
+      sample: {
+        id: string;
+        username: string;
+        fullname: string;
+        profilePicture: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      }[];
+      total: number;
+    };
+    friendedAt: string;
+  };
+  createdAt: string;
+  isRealPeople: boolean;
+};
+
 export type AppState =
   | {
     loggedIn: true;
