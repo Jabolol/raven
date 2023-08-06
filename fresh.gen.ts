@@ -5,32 +5,40 @@
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/api/feed.ts";
-import * as $3 from "./routes/api/refresh.ts";
-import * as $4 from "./routes/api/send.ts";
-import * as $5 from "./routes/api/user.ts";
-import * as $6 from "./routes/api/verify.ts";
-import * as $7 from "./routes/index.tsx";
-import * as $8 from "./routes/user/[id].tsx";
+import * as $3 from "./routes/api/friends.ts";
+import * as $4 from "./routes/api/me.ts";
+import * as $5 from "./routes/api/refresh.ts";
+import * as $6 from "./routes/api/send.ts";
+import * as $7 from "./routes/api/user.ts";
+import * as $8 from "./routes/api/verify.ts";
+import * as $9 from "./routes/index.tsx";
+import * as $10 from "./routes/me.tsx";
+import * as $11 from "./routes/user/[id].tsx";
 import * as $$0 from "./islands/App.tsx";
 import * as $$1 from "./islands/Entry.tsx";
 import * as $$2 from "./islands/Feed.tsx";
 import * as $$3 from "./islands/Info.tsx";
 import * as $$4 from "./islands/Login.tsx";
-import * as $$5 from "./islands/Navbar.tsx";
-import * as $$6 from "./islands/Post.tsx";
-import * as $$7 from "./islands/User.tsx";
+import * as $$5 from "./islands/Me.tsx";
+import * as $$6 from "./islands/Navbar.tsx";
+import * as $$7 from "./islands/Post.tsx";
+import * as $$8 from "./islands/Self.tsx";
+import * as $$9 from "./islands/User.tsx";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $0,
     "./routes/_app.tsx": $1,
     "./routes/api/feed.ts": $2,
-    "./routes/api/refresh.ts": $3,
-    "./routes/api/send.ts": $4,
-    "./routes/api/user.ts": $5,
-    "./routes/api/verify.ts": $6,
-    "./routes/index.tsx": $7,
-    "./routes/user/[id].tsx": $8,
+    "./routes/api/friends.ts": $3,
+    "./routes/api/me.ts": $4,
+    "./routes/api/refresh.ts": $5,
+    "./routes/api/send.ts": $6,
+    "./routes/api/user.ts": $7,
+    "./routes/api/verify.ts": $8,
+    "./routes/index.tsx": $9,
+    "./routes/me.tsx": $10,
+    "./routes/user/[id].tsx": $11,
   },
   islands: {
     "./islands/App.tsx": $$0,
@@ -38,9 +46,11 @@ const manifest = {
     "./islands/Feed.tsx": $$2,
     "./islands/Info.tsx": $$3,
     "./islands/Login.tsx": $$4,
-    "./islands/Navbar.tsx": $$5,
-    "./islands/Post.tsx": $$6,
-    "./islands/User.tsx": $$7,
+    "./islands/Me.tsx": $$5,
+    "./islands/Navbar.tsx": $$6,
+    "./islands/Post.tsx": $$7,
+    "./islands/Self.tsx": $$8,
+    "./islands/User.tsx": $$9,
   },
   baseUrl: import.meta.url,
 };
