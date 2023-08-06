@@ -64,6 +64,19 @@ export const getAuth = () => {
   return store.value.auth;
 };
 
+export const getSession = () => {
+  const data = localStorage.getItem("auth");
+  if (store.value.loggedIn) {
+    return store.value.auth;
+  }
+  if (!data) {
+    return null;
+  }
+  const auth = JSON.parse(data);
+  login(auth);
+  return auth;
+};
+
 export const logout = () => {
   store.value = {
     loggedIn: false,
