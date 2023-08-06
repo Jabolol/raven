@@ -2,6 +2,7 @@ import { useEffect } from "preact/hooks";
 import { feed, fetchFeed } from "../state/feed.ts";
 import Post from "./Post.tsx";
 import Spinner from "../components/Spinner.tsx";
+import Footer from "../components/Footer.tsx";
 
 export default function Feed() {
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function Feed() {
           {feed.value.friendsPosts.reverse().map((post) => <Post {...post} />)}
         </div>
       )}
+      <Footer />
     </div>
   );
 }
