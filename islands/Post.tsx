@@ -4,6 +4,8 @@ import { FeedResp } from "../types.ts";
 import IconEye from "icons/eye.tsx";
 import IconEyeOff from "icons/eye-off.tsx";
 
+import Comment from "./Comments.tsx";
+
 export default function Post({
   user,
   region,
@@ -57,7 +59,12 @@ export default function Post({
                 </p>
               </a>
               <p className="text-xs text-gray-500 dark:text-gray-300">
-                {region}
+                {region} -{" "}
+                {new Date(post.takenAt).toLocaleTimeString(undefined, {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                })}
               </p>
             </div>
             <div
@@ -102,6 +109,7 @@ export default function Post({
             </div>
           </div>
           <p className="mt-2 text-sm dark:text-white">{post.caption}</p>
+          <Comment {...post} />
         </div>
       ))}
     </>
