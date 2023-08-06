@@ -3,9 +3,8 @@
 <img align="right" src="./static/raven.png" height="150px" alt="the raven logo" />
 
 A [`BeReal`](https://bereal.com/) client. This is a work in progress. The goal
-is to create a client that can be used to interact with the
-[`BeReal`](https://bereal.com/) API, exposing hidden features and allowing for
-more customization.
+is to create a client that can be used to interact with the API, exposing hidden
+features and allowing for more customization.
 
 ### installation
 
@@ -19,6 +18,7 @@ Safari and selecting "Add to Home Screen".
 - [x] See others BeReal's without posting
 - [x] Friend's info page
 - [x] Me page with all realmojis and friends
+- [x] Comments on BeReal's
 
 # getting started
 
