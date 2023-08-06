@@ -1,6 +1,6 @@
 import { computed, signal } from "@preact/signals";
 import { type FeedResp } from "../types.ts";
-import { getAuth, refresh } from "./auth.ts";
+import { getAuth, getSession, refresh } from "./auth.ts";
 
 export const store = signal<FeedResp | null>(null);
 
@@ -9,6 +9,7 @@ export const isFeed = (s: FeedResp | null): s is FeedResp => s !== null;
 export const feed = computed(() => store.value);
 
 export const fetchFeed = async (): Promise<void> => {
+  getSession();
   const resp = await fetch("/api/feed", {
     method: "POST",
     headers: {
