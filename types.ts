@@ -77,7 +77,20 @@ export type FeedResp = {
         isInstant: boolean;
         postedAt: string;
       }[];
-      comments: never[];
+      comments: {
+        id: string;
+        user: {
+          id: string;
+          username: string;
+          profilePicture: {
+            url: string;
+            width: number;
+            height: number;
+          };
+        };
+        content: string;
+        postedAt: string;
+      }[];
       tags: never[];
       creationDate: string;
       updatedAt: string;
@@ -117,7 +130,7 @@ export type FriendResp = {
     height: number;
   };
   relationship: {
-    status: string;
+    status: "accepted" | null;
     commonFriends: {
       sample: {
         id: string;
