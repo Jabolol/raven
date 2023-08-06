@@ -41,12 +41,11 @@ export default function User({ id }: { id: string }) {
         </h1>
         <p className="location text-lg text-gray-300">{friend.location}</p>
         <p className="bio text-xl mt-2">{friend.biography}</p>
-        <div className="relationship mt-6">
-          <p className="text-lg">{friend.relationship.status}</p>
-          <p className="text-gray-400">
-            Friends since {formatDate(friend.relationship.friendedAt)}
-          </p>
-        </div>
+        <p className="text-gray-400 mt-6">
+          {friend.relationship.status === null
+            ? "You are not friends"
+            : `Friends since ${formatDate(friend.relationship.friendedAt)}`}
+        </p>
       </div>
       <div className="bg-gray-100 dark:bg-gray-900 p-4 m-4 rounded-md">
         <h2 className="text-lg font-semibold mb-2">
