@@ -215,3 +215,135 @@ export type AppState =
   | {
     loggedIn: false;
   };
+
+export type GitHubDeployments = {
+  url: string;
+  id: number;
+  node_id: string;
+  task: string;
+  original_environment: string;
+  environment: string;
+  description: never;
+  created_at: string;
+  updated_at: string;
+  statuses_url: string;
+  repository_url: string;
+  creator: {
+    login: string;
+    id: number;
+    node_id: string;
+    avatar_url: string;
+    gravatar_id: string;
+    url: string;
+    html_url: string;
+    followers_url: string;
+    following_url: string;
+    gists_url: string;
+    starred_url: string;
+    subscriptions_url: string;
+    organizations_url: string;
+    repos_url: string;
+    events_url: string;
+    received_events_url: string;
+    type: string;
+    site_admin: boolean;
+  };
+  sha: string;
+  ref: string;
+  payload: {
+    project_id: string;
+    project_name: string;
+  };
+  transient_environment: boolean;
+  production_environment: boolean;
+  performed_via_github_app: never;
+}[];
+
+export type GitHubCommits = {
+  sha: string;
+  node_id: string;
+  commit: {
+    author: {
+      name: string;
+      email: string;
+      date: string;
+    };
+    committer: {
+      name: string;
+      email: string;
+      date: string;
+    };
+    message: string;
+    tree: {
+      sha: string;
+      url: string;
+    };
+    url: string;
+    comment_count: number;
+    verification: {
+      verified: boolean;
+      reason: string;
+      signature: never;
+      payload: never;
+    };
+  };
+  url: string;
+  html_url: string;
+  comments_url: string;
+  author: {
+    login: string;
+    id: number;
+    node_id: string;
+    avatar_url: string;
+    gravatar_id: string;
+    url: string;
+    html_url: string;
+    followers_url: string;
+    following_url: string;
+    gists_url: string;
+    starred_url: string;
+    subscriptions_url: string;
+    organizations_url: string;
+    repos_url: string;
+    events_url: string;
+    received_events_url: string;
+    type: string;
+    site_admin: boolean;
+  };
+  committer: {
+    login: string;
+    id: number;
+    node_id: string;
+    avatar_url: string;
+    gravatar_id: string;
+    url: string;
+    html_url: string;
+    followers_url: string;
+    following_url: string;
+    gists_url: string;
+    starred_url: string;
+    subscriptions_url: string;
+    organizations_url: string;
+    repos_url: string;
+    events_url: string;
+    received_events_url: string;
+    type: string;
+    site_admin: boolean;
+  };
+  parents: {
+    sha: string;
+    url: string;
+    html_url: string;
+  }[];
+}[];
+
+export type ChangeLogResponse = {
+  sha: string;
+  message: string;
+  url: string;
+}[];
+
+export type KvCache = {
+  data: GitHubDeployments;
+  timestamp: Date;
+};
