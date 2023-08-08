@@ -18,6 +18,12 @@ export default function Login() {
       return;
     }
 
+    if (!/^\+\d{1,4} \d{5,}$/.test(element.value)) {
+      setError("Invalid format :: +[prefix] [number]");
+      await clearErrorAfterDelay();
+      return;
+    }
+
     const data = await fetch("/api/send", {
       method: "POST",
       headers: {
@@ -27,7 +33,7 @@ export default function Login() {
     });
 
     if (!data.ok) {
-      setError(`${data.status} :: ${data.statusText}`);
+      setError(`API error :: ${data.status}`);
       await clearErrorAfterDelay();
       return;
     }
@@ -52,6 +58,12 @@ export default function Login() {
       return;
     }
 
+    if (!/^\d{6}$/.test(element.value)) {
+      setError("Invalid format :: [6 digits]");
+      await clearErrorAfterDelay();
+      return;
+    }
+
     const data = await fetch("/api/verify", {
       method: "POST",
       headers: {
@@ -61,7 +73,7 @@ export default function Login() {
     });
 
     if (!data.ok) {
-      setError(`${data.status} :: ${data.statusText}`);
+      setError(`API error :: ${data.status}`);
       await clearErrorAfterDelay();
       return;
     }
