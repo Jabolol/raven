@@ -4,55 +4,59 @@
 
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/api/feed.ts";
-import * as $3 from "./routes/api/friends.ts";
-import * as $4 from "./routes/api/me.ts";
-import * as $5 from "./routes/api/refresh.ts";
-import * as $6 from "./routes/api/send.ts";
-import * as $7 from "./routes/api/user.ts";
-import * as $8 from "./routes/api/verify.ts";
-import * as $9 from "./routes/index.tsx";
-import * as $10 from "./routes/me.tsx";
-import * as $11 from "./routes/user/[id].tsx";
+import * as $2 from "./routes/api/changelog.ts";
+import * as $3 from "./routes/api/feed.ts";
+import * as $4 from "./routes/api/friends.ts";
+import * as $5 from "./routes/api/me.ts";
+import * as $6 from "./routes/api/refresh.ts";
+import * as $7 from "./routes/api/send.ts";
+import * as $8 from "./routes/api/user.ts";
+import * as $9 from "./routes/api/verify.ts";
+import * as $10 from "./routes/index.tsx";
+import * as $11 from "./routes/me.tsx";
+import * as $12 from "./routes/user/[id].tsx";
 import * as $$0 from "./islands/App.tsx";
-import * as $$1 from "./islands/Comments.tsx";
-import * as $$2 from "./islands/Entry.tsx";
-import * as $$3 from "./islands/Feed.tsx";
-import * as $$4 from "./islands/Info.tsx";
-import * as $$5 from "./islands/Login.tsx";
-import * as $$6 from "./islands/Me.tsx";
-import * as $$7 from "./islands/Navbar.tsx";
-import * as $$8 from "./islands/Post.tsx";
-import * as $$9 from "./islands/Self.tsx";
-import * as $$10 from "./islands/User.tsx";
+import * as $$1 from "./islands/Changelog.tsx";
+import * as $$2 from "./islands/Comments.tsx";
+import * as $$3 from "./islands/Entry.tsx";
+import * as $$4 from "./islands/Feed.tsx";
+import * as $$5 from "./islands/Info.tsx";
+import * as $$6 from "./islands/Login.tsx";
+import * as $$7 from "./islands/Me.tsx";
+import * as $$8 from "./islands/Navbar.tsx";
+import * as $$9 from "./islands/Post.tsx";
+import * as $$10 from "./islands/Self.tsx";
+import * as $$11 from "./islands/User.tsx";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $0,
     "./routes/_app.tsx": $1,
-    "./routes/api/feed.ts": $2,
-    "./routes/api/friends.ts": $3,
-    "./routes/api/me.ts": $4,
-    "./routes/api/refresh.ts": $5,
-    "./routes/api/send.ts": $6,
-    "./routes/api/user.ts": $7,
-    "./routes/api/verify.ts": $8,
-    "./routes/index.tsx": $9,
-    "./routes/me.tsx": $10,
-    "./routes/user/[id].tsx": $11,
+    "./routes/api/changelog.ts": $2,
+    "./routes/api/feed.ts": $3,
+    "./routes/api/friends.ts": $4,
+    "./routes/api/me.ts": $5,
+    "./routes/api/refresh.ts": $6,
+    "./routes/api/send.ts": $7,
+    "./routes/api/user.ts": $8,
+    "./routes/api/verify.ts": $9,
+    "./routes/index.tsx": $10,
+    "./routes/me.tsx": $11,
+    "./routes/user/[id].tsx": $12,
   },
   islands: {
     "./islands/App.tsx": $$0,
-    "./islands/Comments.tsx": $$1,
-    "./islands/Entry.tsx": $$2,
-    "./islands/Feed.tsx": $$3,
-    "./islands/Info.tsx": $$4,
-    "./islands/Login.tsx": $$5,
-    "./islands/Me.tsx": $$6,
-    "./islands/Navbar.tsx": $$7,
-    "./islands/Post.tsx": $$8,
-    "./islands/Self.tsx": $$9,
-    "./islands/User.tsx": $$10,
+    "./islands/Changelog.tsx": $$1,
+    "./islands/Comments.tsx": $$2,
+    "./islands/Entry.tsx": $$3,
+    "./islands/Feed.tsx": $$4,
+    "./islands/Info.tsx": $$5,
+    "./islands/Login.tsx": $$6,
+    "./islands/Me.tsx": $$7,
+    "./islands/Navbar.tsx": $$8,
+    "./islands/Post.tsx": $$9,
+    "./islands/Self.tsx": $$10,
+    "./islands/User.tsx": $$11,
   },
   baseUrl: import.meta.url,
 };
