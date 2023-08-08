@@ -2,6 +2,8 @@ import { useState } from "preact/hooks";
 
 import Entry from "./Entry.tsx";
 import { login } from "../state/auth.ts";
+import Changelog from "./Changelog.tsx";
+import Footer from "../components/Footer.tsx";
 
 export default function Login() {
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -82,7 +84,7 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-col items-center h-screen dark:bg-gray-800">
+    <main className="flex flex-col items-center dark:bg-gray-800 py-6">
       <Entry
         id="login-entry"
         title="Login"
@@ -102,6 +104,8 @@ export default function Login() {
         disabled={disabled}
         handler={handleVerify}
       />
+      <Changelog />
+      <Footer />
     </main>
   );
 }
