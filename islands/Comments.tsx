@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { FeedResp } from "../types.ts";
+import { type FeedResp } from "../types.ts";
 
 import IconArrowUp from "icons/arrow-up.tsx";
 import IconArrowDown from "icons/arrow-down.tsx";
