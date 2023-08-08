@@ -43,7 +43,7 @@ export default function Me() {
                 <div className="p-2 rounded-lg bg-white dark:bg-gray-800">
                   <img
                     src={(friend.profilePicture ?? { url: "./raven.png" }).url}
-                    alt="Realmoji"
+                    alt={friend.fullname}
                     className="w-full h-auto rounded-md"
                   />
                   <p className="text-xs mt-1">@{friend.username}</p>
