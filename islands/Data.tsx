@@ -61,7 +61,7 @@ export default function Data() {
           Stats
         </h1>
         <div className="my-20 mx-4 p-4 max-w-lg w-full bg-white dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md shadow-md">
-          <div className="w-full h-60">
+          <div className="w-full h-96">
             <Chart
               type="line"
               options={{
