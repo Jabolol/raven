@@ -42,9 +42,11 @@ export default function Navbar({ isLogged }: { isLogged: boolean }) {
             onClick={() => location.reload()}
             className="cursor-pointer"
           />
-          <a href="/stats">
-            <IconChartBar className="w-6 h-6 rounded-full cursor-pointer" />
-          </a>
+          {isLogged && (
+            <a href="/stats">
+              <IconChartBar className="w-6 h-6 rounded-full cursor-pointer" />
+            </a>
+          )}
           {isDarkMode
             ? <IconSun onClick={toggleDarkMode} className="cursor-pointer" />
             : <IconMoon onClick={toggleDarkMode} className="cursor-pointer" />}
