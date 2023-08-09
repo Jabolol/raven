@@ -23,7 +23,9 @@
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.193.0/",
     "icons/": "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/",
-    "ga4/": "https://deno.land/x/fresh_ga4@0.0.2/"
+    "ga4/": "https://deno.land/x/fresh_ga4@0.0.2/",
+    "std/": "https://deno.land/std@0.197.0/",
+    "charts/": "https://deno.land/x/fresh_charts@0.3.1/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
