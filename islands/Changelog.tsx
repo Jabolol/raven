@@ -37,11 +37,11 @@ export default function Changelog() {
             <p className="font-mono text-gray-800 bg-white border border-gray-300 rounded-md dark:text-white dark:bg-gray-700 dark:border-gray-600">
               {commits.length
                 ? commits[commits.length - 1].sha.slice(0, 7)
-                : "xxxxxxx"}
+                : "1bc2dd5"}
             </p>
             <IconGitMerge className="dark:text-white text-gray-800 w-6 h-6" />
             <p className="font-mono text-gray-800 bg-white border border-gray-300 rounded-md dark:text-white dark:bg-gray-700 dark:border-gray-600">
-              {commits.length ? commits[0].sha.slice(0, 7) : "xxxxxxx"}
+              {commits.length ? commits[0].sha.slice(0, 7) : "a89c3e1"}
             </p>
           </div>
           <div className="mt-2 flex text-center">
