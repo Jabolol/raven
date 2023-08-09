@@ -19,6 +19,7 @@ Safari and selecting "Add to Home Screen".
 - [x] Friend's info page
 - [x] Me page with all realmojis and friends
 - [x] Comments on BeReal's
+- [x] Real time worldwide statistics
 
 # getting started
 
