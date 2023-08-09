@@ -1,6 +1,5 @@
 import { DAY } from "std/datetime/constants.ts";
 import { chunk } from "std/collections/chunk.ts";
-import { getDatesSince } from "../../utils.ts";
 import { HandlerContext } from "$fresh/server.ts";
 
 export const handler = async (
@@ -12,7 +11,15 @@ export const handler = async (
   }
 
   const msAgo = 30 * DAY;
-  const dates = getDatesSince(msAgo).map((date) => new Date(date));
+  const dates = [];
+  const now = Date.now();
+  const start = new Date(now - msAgo);
+
+  while (+start < now) {
+    start.setDate(start.getDate() + 1);
+    dates.push(new Date(new Date(start).toISOString().split("T")[0]));
+  }
+
   const kv = await Deno.openKv();
 
   const queries = ["total", "user", "me", "/", "stats"].map((
