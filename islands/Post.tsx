@@ -47,7 +47,7 @@ export default function Post({
           <div className="flex items-center">
             <a href={`/user/${user.id}`}>
               <img
-                src={user.profilePicture.url}
+                src={(user.profilePicture ?? { url: "/raven.png" }).url}
                 alt={user.username}
                 className="w-10 h-10 rounded-full mr-2"
               />
