@@ -56,11 +56,14 @@ export default function Data() {
 
   return (
     <>
-      <main className="flex-1 p-4 flex flex-col items-center justify-center">
-        <h1 className="text-center text-gray-800 dark:text-white text-2xl font-semibold mb-4">
+      <main className="flex-1 p-4 flex flex-col items-center justify-center bg-white dark:bg-gray-800">
+        <h1 className="text-center text-gray-800 dark:text-white text-2xl font-semibold mb-2">
           Stats
         </h1>
-        <div className="my-20 mx-4 p-4 max-w-lg w-full bg-white dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md shadow-md">
+        <p className="text-center text-gray-800 dark:text-white">
+          Traffic for the last 30 days
+        </p>
+        <div className="m-4 p-4 max-w-lg w-full bg-white dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md shadow-md">
           <div className="w-full h-96">
             <Chart
               type="line"
