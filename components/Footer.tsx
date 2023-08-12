@@ -3,7 +3,7 @@ import IconBrandGithub from "icons/brand-github.tsx";
 
 export default function Footer() {
   return (
-    <footer class="flex flex-col justify-center items-center py-6 text-gray-600 dark:text-gray-400">
+    <footer class="flex flex-col justify-center items-center py-6 text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800">
       <div class="flex flex-row items-center space-x-2 mb-4">
         <IconBrandDeno class="w-6 h-6" />
         <p class="text-sm font-medium">
