@@ -22,7 +22,7 @@ export default function Me() {
     <div className="text-gray-800 bg-white dark:bg-gray-800 dark:text-white p-4 max-w-md mx-auto">
       <div className="relative">
         <img
-          src={user.profilePicture.url}
+          src={(user.profilePicture ?? { url: "/raven.png"}).url}
           alt="Profile"
           className="w-full rounded-md"
         />
@@ -42,7 +42,7 @@ export default function Me() {
               <a href={`/user/${friend.id}`} key={friend.id}>
                 <div className="p-2 rounded-lg bg-white dark:bg-gray-800">
                   <img
-                    src={(friend.profilePicture ?? { url: "./raven.png" }).url}
+                    src={(friend.profilePicture ?? { url: "/raven.png" }).url}
                     alt={friend.fullname}
                     className="w-full h-auto rounded-md"
                   />
