@@ -347,3 +347,13 @@ export type KvCache = {
   data: GitHubDeployments;
   timestamp: Date;
 };
+
+export type JWTPayload = {
+  uid: string;
+  user_id: string;
+  phone_number_country_code: string;
+  iss: "https://auth.bereal.team/";
+  aud: "ios";
+  iat: number;
+  exp: number;
+};
