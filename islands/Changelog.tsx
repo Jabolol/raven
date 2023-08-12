@@ -46,7 +46,11 @@ export default function Changelog() {
           </div>
           <div className="mt-2 flex text-center">
             <p className="text-gray-600 dark:text-gray-300">
-              Log in after a new release!
+              There are{" "}
+              <span className="font-bold">
+                {commits.length} commit{commits.length > 1 && "s"}
+              </span>{" "}
+              between deployments.
             </p>
           </div>
           <div className="mt-5 flex flex-col pb-4">
@@ -57,7 +61,7 @@ export default function Changelog() {
                   <p className="font-mono text-gray-800 bg-white border border-gray-300 rounded-md dark:text-white dark:bg-gray-700 dark:border-gray-600">
                     {sha.slice(0, 7)}
                   </p>
-                  <p className="text-gray-600 dark:text-gray-300 ml-2">
+                  <p className="font-mono text-gray-600 dark:text-gray-300 ml-2">
                     {message.replaceAll(/\`/g, "")}
                   </p>
                 </div>
