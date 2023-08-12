@@ -1,5 +1,5 @@
 import { computed, signal } from "@preact/signals";
-import { type AppState, type Auth } from "../types.ts";
+import { type AppState, type Auth, type JWTPayload } from "../types.ts";
 
 export const store = signal<AppState>({
   loggedIn: false,
@@ -64,17 +64,27 @@ export const getAuth = () => {
   return store.value.auth;
 };
 
-export const getSession = () => {
+export const getSession = async (): Promise<Auth | null> => {
   const data = localStorage.getItem("auth");
   if (store.value.loggedIn) {
+    const expired = isExpired(parseJwt(store.value.auth.access_token));
+    if (expired) {
+      await refresh();
+    }
     return store.value.auth;
   }
   if (!data) {
     return null;
   }
   const auth = JSON.parse(data);
-  login(auth);
-  return auth;
+  const expired = isExpired(parseJwt(auth.access_token));
+  if (expired) {
+    await refresh();
+  } else {
+    login(auth);
+    return auth;
+  }
+  return await getSession();
 };
 
 export const logout = () => {
@@ -83,3 +93,16 @@ export const logout = () => {
   };
   localStorage.removeItem("auth");
 };
+
+export const parseJwt = (token: string): JWTPayload =>
+  JSON.parse(
+    decodeURIComponent(
+      atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
+        .split("").map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(""),
+    ),
+  );
+
+export const isExpired = (payload: JWTPayload) =>
+  payload.exp <= Math.floor(Date.now() / 1000);
