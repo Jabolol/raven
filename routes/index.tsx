@@ -1,5 +1,5 @@
-import App from "../islands/App.tsx";
+import App from "~/islands/App.tsx";
 
-export default function Home() {
+export default function () {
   return <App />;
 }
