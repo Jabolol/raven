@@ -11,7 +11,7 @@ import IconWorld from "icons/world.tsx";
 import { isLoggedIn, logout, store } from "~/state/auth.ts";
 
 export default function Navbar() {
-  const [isLogged, setIsLogged] = useState<boolean>(isLoggedIn.value);
+  const [isLogged, setIsLogged] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
