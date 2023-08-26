@@ -1,5 +1,5 @@
-import Plot from "../islands/Plot.tsx";
+import Data from "~/islands/Data.tsx";
 
-export default function Stats() {
-  return <Plot />;
+export default function () {
+  return <Data />;
 }
