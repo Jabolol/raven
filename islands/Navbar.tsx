@@ -7,12 +7,18 @@ import IconReload from "icons/reload.tsx";
 import IconArrowBigLeft from "icons/arrow-big-left.tsx";
 import IconUser from "icons/user.tsx";
 import IconChartBar from "icons/chart-bar.tsx";
-import { logout } from "../state/auth.ts";
+import IconWorld from "icons/world.tsx";
+import { isLoggedIn, logout, store } from "~/state/auth.ts";
 
-export default function Navbar({ isLogged }: { isLogged: boolean }) {
+export default function Navbar() {
+  const [isLogged, setIsLogged] = useState<boolean>(isLoggedIn.value);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
+    store.subscribe((v) => {
+      setIsLogged(v.loggedIn);
+    });
+    setIsLogged(isLoggedIn.value);
     setIsDarkMode(document.body.classList.contains("dark"));
   }, []);
 
@@ -42,6 +48,11 @@ export default function Navbar({ isLogged }: { isLogged: boolean }) {
             onClick={() => location.reload()}
             className="cursor-pointer"
           />
+          {isLogged && (
+            <a href="/discovery">
+              <IconWorld className="w-6 h-6 rounded-full cursor-pointer" />
+            </a>
+          )}
           {isLogged && (
             <a href="/stats">
               <IconChartBar className="w-6 h-6 rounded-full cursor-pointer" />
