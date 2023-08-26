@@ -1,6 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
-import Info from "../../islands/Info.tsx";
+import User from "~/islands/User.tsx";
 
-export default function Greet({ params: { id } }: PageProps) {
-  return <Info id={id} />;
+export default function ({ params: { id } }: PageProps) {
+  return <User id={id} />;
 }
