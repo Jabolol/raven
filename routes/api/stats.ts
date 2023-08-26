@@ -22,7 +22,7 @@ export const handler = async (
 
   const kv = await Deno.openKv();
 
-  const queries = ["total", "user", "me", "/", "stats"].map((
+  const queries = ["total", "user", "me", "/", "stats", "discovery"].map((
     value,
   ) => ["visits", value]);
 
@@ -51,7 +51,10 @@ export const handler = async (
   return new Response(
     JSON.stringify({ dates, results }, null, 2),
     {
-      headers: { "content-type": "application/json" },
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
   );
 };
