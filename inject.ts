@@ -24,7 +24,7 @@ export default {
         state: {},
       }],
       styles: [{
-        cssText: "html {scroll-behavior: smooth;}",
+        cssText: "html {scroll-behavior: smooth; overflow-x: hidden;}",
         id: STYLE_ELEMENT_ID,
       }],
     };
