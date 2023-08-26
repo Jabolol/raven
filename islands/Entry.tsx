@@ -1,4 +1,4 @@
-import { type EntryProps } from "../types.ts";
+import { type EntryProps } from "~/types.ts";
 
 export default function Entry(
   { id, title, description, placeholder, buttonText, disabled, handler }:
