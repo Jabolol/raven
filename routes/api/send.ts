@@ -36,13 +36,23 @@ export const handler = async (
     },
   );
 
+  if (!receiptResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await receiptResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
   const { receipt } = await receiptResponse.json() as {
     receipt: string;
   };
-
-  if (!receipt) {
-    return new Response(null, { status: 400 });
-  }
 
   const otpResponse = await fetch(
     "https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
@@ -66,18 +76,31 @@ export const handler = async (
     },
   );
 
+  if (!otpResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await otpResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
   const { sessionInfo } = await otpResponse.json() as {
     sessionInfo: string;
   };
 
-  if (!sessionInfo) {
-    return new Response(null, { status: 400 });
-  }
-
   return new Response(
     JSON.stringify({ sessionInfo }),
     {
-      headers: { "content-type": "application/json" },
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
   );
 };
