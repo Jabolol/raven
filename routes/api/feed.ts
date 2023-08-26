@@ -26,13 +26,28 @@ export const handler = async (
   );
 
   if (!feedResponse.ok) {
-    return new Response(null, { status: 401 });
+    return new Response(
+      JSON.stringify(
+        await feedResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 
   return new Response(
     JSON.stringify(
       await feedResponse.json(),
     ),
-    { status: 200 },
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
   );
 };
