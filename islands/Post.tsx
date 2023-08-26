@@ -140,7 +140,9 @@ export default function Post(
                     <p class="absolute bottom-0 right-0">{realMoji.emoji}</p>
                   </div>
                   <p class="text-gray-800 dark:text-white text-xs font-medium text-center">
-                    @{realMoji.user.username.length > 10 ? realMoji.user.username.slice(0, 7) + "..." : realMoji.user.username}
+                    @{realMoji.user.username.length > 10
+                      ? realMoji.user.username.slice(0, 7) + "..."
+                      : realMoji.user.username}
                   </p>
                 </div>
               ))}
