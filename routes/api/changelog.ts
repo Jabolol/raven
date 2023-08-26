@@ -6,7 +6,7 @@ import {
   type GitHubCommits,
   type GitHubDeployments,
   type KvCache,
-} from "../../types.ts";
+} from "~/types.ts";
 
 export const handler = async (
   req: Request,
@@ -101,10 +101,15 @@ export const handler = async (
 
   kv.close();
 
-  return new Response(JSON.stringify(result, null, 2), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
+  return new Response(
+    JSON.stringify(
+      result,
+    ),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
-  });
+  );
 };
