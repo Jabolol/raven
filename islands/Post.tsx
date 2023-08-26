@@ -1,19 +1,19 @@
 import { useState } from "preact/hooks";
-import { type FeedResp } from "../types.ts";
-
+import { type FriendEntry } from "~/types.ts";
 import IconEye from "icons/eye.tsx";
 import IconEyeOff from "icons/eye-off.tsx";
+import Comment from "~/islands/Comments.tsx";
 
-import Comment from "./Comments.tsx";
-
-export default function Post({
-  user,
-  region,
-  posts,
-}: FeedResp["friendsPosts"][number]) {
+export default function Post(
+  { user, region, posts }: {
+    user: FriendEntry["user"];
+    region: FriendEntry["region"];
+    posts: FriendEntry["posts"];
+  },
+) {
   const [showStates, setShowStates] = useState(
     posts.reduce<
-      { [k: string]: { showSecondaryMap: boolean; showPreview: boolean } }
+      Record<string, { showSecondaryMap: boolean; showPreview: boolean }>
     >((acc, post) => {
       acc[post.id] = {
         showSecondaryMap: false,
@@ -42,7 +42,7 @@ export default function Post({
         <div
           id={post.id}
           key={post.id}
-          className="m-4 mx-auto max-w-md p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md"
+          className="m-4 mx-auto max-w-sm p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md"
         >
           <div className="flex items-center">
             <a href={`/user/${user.id}`}>
@@ -50,6 +50,9 @@ export default function Post({
                 src={(user.profilePicture ?? { url: "/raven.png" }).url}
                 alt={user.username}
                 className="w-10 h-10 rounded-full mr-2"
+                onError={(d) => {
+                  (d.target as HTMLImageElement).src = "/raven.png";
+                }}
               />
             </a>
             <div>
@@ -83,6 +86,9 @@ export default function Post({
                 alt={`Post ${post.id}`}
                 className="w-full rounded-lg shadow cursor-pointer"
                 onClick={() => toggleState(post.id, "showSecondaryMap")}
+                onError={(d) => {
+                  (d.target as HTMLImageElement).src = "/raven.png";
+                }}
               />
               {showStates[post.id].showSecondaryMap && (
                 <img
@@ -90,6 +96,9 @@ export default function Post({
                   alt={`Frontal ${post.id}`}
                   className="absolute inset-0 w-full h-full rounded-lg shadow cursor-pointer"
                   onClick={() => toggleState(post.id, "showSecondaryMap")}
+                  onError={(d) => {
+                    (d.target as HTMLImageElement).src = "/raven.png";
+                  }}
                 />
               )}
             </div>
@@ -105,9 +114,38 @@ export default function Post({
                   : post.secondary.url}
                 alt={`Frontal ${post.id}`}
                 className="w-full h-full object-cover rounded-lg"
+                onError={(d) => {
+                  (d.target as HTMLImageElement).src = "/raven.png";
+                }}
               />
             </div>
           </div>
+          {post.realMojis.length > 0 && (
+            <div class="overflow-x-auto flex w-max-md w-full gap-2 py-2">
+              {post.realMojis.map((realMoji) => (
+                <div class="flex-none pt-2">
+                  <div class="relative flex flex-col items-center justify-center gap-x-3">
+                    <a href={`/user/${realMoji.user.id}`}>
+                      <img
+                        class="w-16 h-16 rounded-full"
+                        src={realMoji.media.url}
+                        alt="realMoji"
+                        onError={(d) => {
+                          (d.target as HTMLImageElement).classList.add(
+                            "hidden",
+                          );
+                        }}
+                      />
+                    </a>
+                    <p class="absolute bottom-0 right-0">{realMoji.emoji}</p>
+                  </div>
+                  <p class="text-gray-800 dark:text-white text-xs font-medium text-center">
+                    @{realMoji.user.username.length > 10 ? realMoji.user.username.slice(0, 7) + "..." : realMoji.user.username}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
           <p className="mt-2 text-sm dark:text-white">{post.caption}</p>
           <Comment {...post} />
         </div>
