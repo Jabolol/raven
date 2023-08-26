@@ -16,7 +16,7 @@ export const handler = async (
     return new Response(null, { status: 400 });
   }
 
-  const meResponse = await fetch(
+  const friendsResponse = await fetch(
     `https://mobile.bereal.com/api/relationships/friends`,
     {
       headers: {
@@ -25,14 +25,29 @@ export const handler = async (
     },
   );
 
-  if (!meResponse.ok) {
-    return new Response(null, { status: 401 });
+  if (!friendsResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await friendsResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 
   return new Response(
     JSON.stringify(
-      await meResponse.json(),
+      await friendsResponse.json(),
     ),
-    { status: 200 },
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
   );
 };
