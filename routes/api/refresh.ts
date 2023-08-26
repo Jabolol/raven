@@ -35,6 +35,20 @@ export const handler = async (
     },
   );
 
+  if (!refreshResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await refreshResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
   const { access_token, refresh_token, expires_in } = await refreshResponse
     .json() as {
       access_token?: string;
@@ -48,6 +62,11 @@ export const handler = async (
       refresh_token,
       expires_in,
     }),
-    { status: 200, headers: { "content-type": "application/json" } },
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
   );
 };
