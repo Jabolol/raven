@@ -27,13 +27,28 @@ export const handler = async (
   );
 
   if (!friendResponse.ok) {
-    return new Response(null, { status: 401 });
+    return new Response(
+      JSON.stringify(
+        await friendResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 
   return new Response(
     JSON.stringify(
       await friendResponse.json(),
     ),
-    { status: 200 },
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
   );
 };
