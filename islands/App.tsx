@@ -1,25 +1,18 @@
-import Feed from "../islands/Feed.tsx";
-import Login from "../islands/Login.tsx";
-import Navbar from "../islands/Navbar.tsx";
-
 import { useEffect, useState } from "preact/hooks";
-
-import { isLoggedIn, store } from "../state/auth.ts";
+import Feed from "~/islands/Feed.tsx";
+import Login from "~/islands/Login.tsx";
+import { isLoggedIn, store } from "~/state/auth.ts";
 
 export default function App() {
-  const [isLogged, setIsLoggedIn] = useState<boolean>(false);
-
+  const [showFeed, setShowFeed] = useState<boolean>(false);
   useEffect(() => {
     store.subscribe((v) => {
-      setIsLoggedIn(v.loggedIn);
+      setShowFeed(v.loggedIn);
     });
-    setIsLoggedIn(isLoggedIn.value);
+    setShowFeed(isLoggedIn.value);
   }, []);
 
   return (
-    <main class="bg-white dark:bg-gray-800">
-      <Navbar isLogged={isLogged} />
-      {isLogged ? <Feed /> : <Login />}
-    </main>
+    showFeed ? <Feed /> : <Login />
   );
 }
