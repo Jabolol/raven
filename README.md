@@ -34,7 +34,6 @@ use raven.
 
 <div>
     <img src="./assets/feed.png" width="auto" height="400px" alt="home feed" />
-    <img src="./assets/global.png" width="auto" height="400px" alt="global feed" />
     <img src="./assets/save.png" width="auto" height="400px" alt="save BeReal" />
     <img src="./assets/self.png" width="auto" height="400px" alt="own profile" />
     <img src="./assets/stats.png" width="auto" height="400px" alt="site stats" />
