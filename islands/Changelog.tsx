@@ -1,7 +1,8 @@
 import { useEffect, useState } from "preact/hooks";
 import IconGitCommit from "icons/git-commit.tsx";
 import IconGitMerge from "icons/git-merge.tsx";
-import { type ChangeLogResponse } from "../types.ts";
+import { type ChangeLogResponse } from "~/types.ts";
+import Error from "~/islands/Error.tsx";
 
 export default function Changelog() {
   const [commits, setCommits] = useState<ChangeLogResponse>([]);
@@ -9,18 +10,11 @@ export default function Changelog() {
 
   useEffect(() => {
     (async () => {
-      try {
-        const response = await fetch("/api/changelog");
-        if (!response.ok) {
-          throw new Error(
-            `${response.status} :: ${response.statusText}`,
-          );
-        }
-        const data = await response.json();
-        setCommits(data);
-      } catch (error) {
-        setError(`${error.message}`);
+      const response = await fetch("/api/changelog");
+      if (!response.ok) {
+        return setError(`${response.status} :: ${await response.text()}`);
       }
+      setCommits(await response.json());
     })();
   }, []);
 
@@ -31,7 +25,7 @@ export default function Changelog() {
           Changelog
         </h1>
       </div>
-      {error ? <p className="text-red-500 my-4">{error}</p> : (
+      {error ? <Error message={error} /> : (
         <>
           <div className="mt-5 flex items-center gap-2 mb-2">
             <p className="font-mono text-gray-800 bg-white border border-gray-300 rounded-md dark:text-white dark:bg-gray-700 dark:border-gray-600">
