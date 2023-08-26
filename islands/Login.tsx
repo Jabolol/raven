@@ -1,9 +1,8 @@
 import { useState } from "preact/hooks";
-
-import Entry from "./Entry.tsx";
-import { login } from "../state/auth.ts";
-import Changelog from "./Changelog.tsx";
-import Footer from "../components/Footer.tsx";
+import Entry from "~/islands/Entry.tsx";
+import { login } from "~/state/auth.ts";
+import Changelog from "~/islands/Changelog.tsx";
+import Error from "~/islands/Error.tsx";
 
 export default function Login() {
   const [disabled, setDisabled] = useState<boolean>(true);
@@ -15,15 +14,7 @@ export default function Login() {
       | HTMLInputElement
       | null;
     if (!element || !element.value) {
-      setError("Input a valid phone number");
-      await clearErrorAfterDelay();
-      return;
-    }
-
-    if (!/^\+\d{1,4} \d{5,}$/.test(element.value)) {
-      setError("Invalid format :: +[prefix] [number]");
-      await clearErrorAfterDelay();
-      return;
+      return setError("Input a valid phone number");
     }
 
     const data = await fetch("/api/send", {
@@ -35,9 +26,9 @@ export default function Login() {
     });
 
     if (!data.ok) {
-      setError(`API error :: ${data.status}`);
-      await clearErrorAfterDelay();
-      return;
+      return setError(
+        (await data.json() as { error: { message: string } }).error.message,
+      );
     }
 
     const { sessionInfo } = await data.json();
@@ -45,25 +36,16 @@ export default function Login() {
     setDisabled(false);
   };
 
-  const clearErrorAfterDelay = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-    setError("");
-  };
-
   const handleVerify = async () => {
     const element = document.getElementById("verify-entry") as
       | HTMLInputElement
       | null;
     if (!element || !element.value) {
-      setError("Input a valid code");
-      await clearErrorAfterDelay();
-      return;
+      return setError("Input a valid code");
     }
 
     if (!/^\d{6}$/.test(element.value)) {
-      setError("Invalid format :: [6 digits]");
-      await clearErrorAfterDelay();
-      return;
+      return setError("The code must be 6 digits long");
     }
 
     const data = await fetch("/api/verify", {
@@ -75,16 +57,14 @@ export default function Login() {
     });
 
     if (!data.ok) {
-      setError(`API error :: ${data.status}`);
-      await clearErrorAfterDelay();
-      return;
+      return setError(JSON.stringify(await data.json(), null, 2));
     }
     login(await data.json());
     setDisabled(true);
   };
 
   return (
-    <main className="flex flex-col items-center dark:bg-gray-800 py-6">
+    <div className="flex flex-col items-center dark:bg-gray-800 py-6">
       <Entry
         id="login-entry"
         title="Login"
@@ -94,7 +74,7 @@ export default function Login() {
         disabled={!disabled}
         handler={handleLogin}
       />
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <Error message={error} />}
       <Entry
         id="verify-entry"
         title="Verify"
@@ -105,7 +85,6 @@ export default function Login() {
         handler={handleVerify}
       />
       <Changelog />
-      <Footer />
-    </main>
+    </div>
   );
 }
