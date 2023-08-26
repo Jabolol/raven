@@ -1,4 +1,4 @@
-export default function Error404() {
+export default function () {
   return (
     <div className="dark:bg-black dark:text-white h-screen flex flex-col items-center justify-center">
       <img
