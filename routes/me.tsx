@@ -1,5 +1,5 @@
-import Self from "../islands/Self.tsx";
+import Me from "~/islands/Me.tsx";
 
-export default function Me() {
-  return <Self />;
+export default function () {
+  return <Me />;
 }
