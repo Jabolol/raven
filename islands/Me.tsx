@@ -1,30 +1,31 @@
 import { useEffect } from "preact/hooks";
-import Spinner from "../components/Spinner.tsx";
-import { fetchMe, me } from "../state/me.ts";
-import { fetchFriends, friends } from "../state/friends.ts";
-import { isLoggedIn } from "../state/auth.ts";
+import Spinner from "~/components/Spinner.tsx";
+import { fetchMe, me } from "~/state/me.ts";
+import { fetchFriends, friends } from "~/state/friends.ts";
 
 export default function Me() {
-  const user = me.value;
-  const friendList = friends.value;
-
   useEffect(() => {
-    if (!isLoggedIn.value) window.location.href = "/";
     fetchMe();
     fetchFriends();
   }, []);
+
+  const user = me.value;
+  const friendList = friends.value;
 
   if (user === null || friendList === null) {
     return <Spinner />;
   }
 
   return (
-    <div className="text-gray-800 bg-white dark:bg-gray-800 dark:text-white p-4 max-w-md mx-auto">
+    <div className="text-gray-800 bg-white dark:bg-gray-800 dark:text-white p-4 max-w-md min-h-screen mx-auto">
       <div className="relative">
         <img
-          src={(user.profilePicture ?? { url: "/raven.png"}).url}
+          src={(user.profilePicture ?? { url: "/raven.png" }).url}
           alt="Profile"
-          className="w-full rounded-md"
+          className="w-full h-auto rounded-md"
+          onError={(d) => {
+            (d.target as HTMLImageElement).src = "/raven.png";
+          }}
         />
       </div>
       <div className="mt-4">
@@ -45,6 +46,9 @@ export default function Me() {
                     src={(friend.profilePicture ?? { url: "/raven.png" }).url}
                     alt={friend.fullname}
                     className="w-full h-auto rounded-md"
+                    onError={(d) => {
+                      (d.target as HTMLImageElement).src = "/raven.png";
+                    }}
                   />
                   <p className="text-xs mt-1">@{friend.username}</p>
                 </div>
@@ -70,6 +74,9 @@ export default function Me() {
                   src={realmoji.media.url}
                   alt="Realmoji"
                   className="w-full h-auto rounded-md"
+                  onError={(d) => {
+                    (d.target as HTMLImageElement).src = "/raven.png";
+                  }}
                 />
                 <p className="text-xs mt-1">{realmoji.emoji}</p>
               </div>
