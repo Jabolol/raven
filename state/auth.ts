@@ -1,5 +1,5 @@
 import { computed, signal } from "@preact/signals";
-import { type AppState, type Auth, type JWTPayload } from "../types.ts";
+import { type AppState, type Auth, type JWTPayload } from "~/types.ts";
 
 export const store = signal<AppState>({
   loggedIn: false,
