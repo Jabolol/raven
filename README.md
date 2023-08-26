@@ -2,26 +2,45 @@
 
 <img align="right" src="./static/raven.png" height="150px" alt="the raven logo" />
 
-A [`BeReal`](https://bereal.com/) client. This is a work in progress. The goal
-is to create a client that can be used to interact with the API, exposing hidden
-features and allowing for more customization.
+A tweaked custom [`BeReal`](https://bereal.com/) client built from the ground up
+with a focus on features and performance.
 
-### installation
+# logging in
 
-On iOS, you can install the app by visiting the following the
-[`raven`](https://raven.deno.dev/) link, and then clicking the share button in
-Safari and selecting "Add to Home Screen".
+Currently, raven is hosted on [Deno Deploy](https://deno.com/deploy) at the URL
+[raven.deno.dev](https://raven.deno.dev). You can use it by visiting that URL
+and logging in with your BeReal account. You'll need to have a BeReal account to
+use raven.
 
-### features
+<div>
+    <img src="./assets/login.png" width="auto" height="400px" alt="login form" />
+    <img src="./assets/code.png" width="auto" height="400px" alt="otp verification" />
+</div>
 
-- [x] Authorization flow
-- [x] See others BeReal's without posting
-- [x] Friend's info page
-- [x] Me page with all realmojis and friends
-- [x] Comments on BeReal's
-- [x] Real time worldwide statistics
+# features
 
-# getting started
+- [X] see others' BeReals **without** posting your own
+- [X] **screenshot** without notifying the other person
+- [X] save the **original** BeReal and realMojis to your device
+- [X] user **profiles** with detailed information
+- [X] global feed of **recent** BeReals (removed in the official BeReal app)
+- [X] worldwide **usage** statistics per route
+- [X] profile tab with **all** of your friends and realMojis
+- [X] **dark** and **light** mode support
+- [X] **responsive** design for mobile and desktop
+- [X] **fast** and **lightweight** (100 lighthouse score)
+
+# screenshots
+
+<div>
+    <img src="./assets/feed.png" width="auto" height="400px" alt="home feed" />
+    <img src="./assets/global.png" width="auto" height="400px" alt="global feed" />
+    <img src="./assets/save.png" width="auto" height="400px" alt="save BeReal" />
+    <img src="./assets/self.png" width="auto" height="400px" alt="own profile" />
+    <img src="./assets/stats.png" width="auto" height="400px" alt="site stats" />
+</div>
+
+# development
 
 Install deno if you haven't already:
 
@@ -39,4 +58,10 @@ Run the development server:
 
 ```sh
 deno task start
+```
+
+Format and lint the code before committing:
+
+```sh
+deno fmt && deno lint
 ```
