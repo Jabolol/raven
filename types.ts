@@ -357,3 +357,74 @@ export type JWTPayload = {
   iat: number;
   exp: number;
 };
+
+export type DiscoveryResp = {
+  posts: {
+    id: string;
+    bucket: string;
+    creationDate: {
+      _seconds: number;
+      _nanoseconds: number;
+    };
+    imageHeight: number;
+    imageWidth: number;
+    isPublic: boolean;
+    lateInSeconds: number;
+    location?: {
+      _latitude: number;
+      _longitude: number;
+    };
+    mediaType: string;
+    notificationID: string;
+    ownerID: string;
+    photoURL: string;
+    region: string;
+    realMojis: {
+      id: string;
+      uid: string;
+      userName: string;
+      user: {
+        id: string;
+        username: string;
+        profilePicture: {
+          url: string;
+          width: number;
+          height: number;
+        };
+      };
+      date: {
+        _seconds: number;
+        _nanoseconds: number;
+      };
+      emoji: string;
+      type: string;
+      uri: string;
+    }[];
+    retakeCounter: number;
+    secondaryImageHeight: number;
+    secondaryImageWidth: number;
+    secondaryPhotoURL: string;
+    takenAt: {
+      _seconds: number;
+      _nanoseconds: number;
+    };
+    updatedAt: number;
+    user: {
+      id: string;
+      username: string;
+      profilePicture: {
+        url: string;
+        width: number;
+        height: number;
+      };
+    };
+    userName: string;
+    visibility: string[];
+    caption?: string;
+  }[];
+  lastIndex: string;
+};
+
+export type Posts = FeedResp["friendsPosts"][number]["posts"][number];
+
+export type FriendEntry = FeedResp["friendsPosts"][number];
