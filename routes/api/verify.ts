@@ -42,6 +42,20 @@ export const handler = async (
     },
   );
 
+  if (!fireResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await fireResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
   const { refreshToken, isNewUser, localId } = await fireResponse.json() as {
     refreshToken?: string;
     isNewUser?: boolean;
@@ -73,6 +87,20 @@ export const handler = async (
       }),
     },
   );
+
+  if (!tokenResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await tokenResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
 
   const { id_token: idToken } = await tokenResponse.json() as {
     id_token?: string;
@@ -106,6 +134,20 @@ export const handler = async (
     },
   );
 
+  if (!grantResponse.ok) {
+    return new Response(
+      JSON.stringify(
+        await grantResponse.json(),
+      ),
+      {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+  }
+
   const { access_token, refresh_token, token_type, expires_in } =
     await grantResponse.json() as {
       access_token?: string;
@@ -128,8 +170,9 @@ export const handler = async (
       is_new_user: isNewUser,
     }),
     {
+      status: 200,
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
     },
   );
