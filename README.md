@@ -1,6 +1,6 @@
-# raven
-
 <img align="right" src="./static/raven.png" height="150px" alt="the raven logo" />
+
+# raven
 
 A tweaked custom [`BeReal`](https://bereal.com/) client built from the ground up
 with a focus on features and performance.
@@ -19,16 +19,16 @@ use raven.
 
 # features
 
-- [X] see others' BeReals **without** posting your own
-- [X] **screenshot** without notifying the other person
-- [X] save the **original** BeReal and realMojis to your device
-- [X] user **profiles** with detailed information
-- [X] global feed of **recent** BeReals (removed in the official BeReal app)
-- [X] worldwide **usage** statistics per route
-- [X] profile tab with **all** of your friends and realMojis
-- [X] **dark** and **light** mode support
-- [X] **responsive** design for mobile and desktop
-- [X] **fast** and **lightweight** (100 lighthouse score)
+- [x] see others' BeReals **without** posting your own
+- [x] **screenshot** without notifying the other person
+- [x] save the **original** BeReal and realMojis to your device
+- [x] user **profiles** with detailed information
+- [x] global feed of **recent** BeReals (removed in the official BeReal app)
+- [x] worldwide **usage** statistics per route
+- [x] profile tab with **all** of your friends and realMojis
+- [x] **dark** and **light** mode support
+- [x] **responsive** design for mobile and desktop
+- [x] **fast** and **lightweight** (100 lighthouse score)
 
 # screenshots
 
