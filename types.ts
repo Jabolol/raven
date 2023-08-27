@@ -18,7 +18,81 @@ export type Auth = {
 };
 
 export type FeedResp = {
-  userPosts: never;
+  userPosts: {
+    user: {
+      id: string;
+      username: string;
+      profilePicture: {
+        url: string;
+        width: number;
+        height: number;
+      };
+    };
+    region: string;
+    momentId: string;
+    posts: {
+      id: string;
+      visibility: string[];
+      primary: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      secondary: {
+        url: string;
+        width: number;
+        height: number;
+      };
+      location: {
+        longitude: number;
+        latitude: number;
+      };
+      retakeCounter: number;
+      lateInSeconds: number;
+      isLate: boolean;
+      isMain: boolean;
+      realMojis: {
+        id: string;
+        user: {
+          id: string;
+          username: string;
+          profilePicture: {
+            url: string;
+            width: number;
+            height: number;
+          };
+        };
+        media: {
+          url: string;
+          width: number;
+          height: number;
+        };
+        type: string;
+        emoji: string;
+        isInstant: boolean;
+        postedAt: string;
+      }[];
+      comments: {
+        id: string;
+        user: {
+          id: string;
+          username: string;
+          profilePicture: {
+            url: string;
+            width: number;
+            height: number;
+          };
+        };
+        content: string;
+        postedAt: string;
+      }[];
+      tags: never[];
+      unblurCount: number;
+      takenAt: string;
+      creationDate: string;
+      updatedAt: string;
+    }[];
+  };
   friendsPosts: {
     user: {
       id: string;
@@ -428,3 +502,5 @@ export type DiscoveryResp = {
 export type Posts = FeedResp["friendsPosts"][number]["posts"][number];
 
 export type FriendEntry = FeedResp["friendsPosts"][number];
+
+export type SelfPost = FeedResp["userPosts"]["posts"][number];
