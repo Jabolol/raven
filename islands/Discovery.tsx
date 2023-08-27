@@ -25,62 +25,66 @@ export default function Discovery() {
     <div className="flex flex-col items-center justify-center h-full">
       <div className="pb-4">
         {discovery.value.posts.reverse().map((post) => (
-          <Post
-            user={post.user}
-            region={post.region}
-            posts={[{
-              ...post,
-              primary: {
-                url: post.photoURL,
-                width: post.imageWidth,
-                height: post.imageHeight,
-              },
-              secondary: {
-                url: post.secondaryPhotoURL,
-                width: post.secondaryImageWidth,
-                height: post.secondaryImageHeight,
-              },
-              isLate: post.lateInSeconds > 0,
-              isMain: true,
-              tags: [],
-              comments: [],
-              location: post.location
-                ? {
-                  latitude: post.location._latitude,
-                  longitude: post.location._longitude,
-                }
-                : undefined,
-              takenAt: new Date(post.takenAt._seconds * 1e3).toISOString(),
-              realMojis: post.realMojis.map((realMoji) => ({
-                id: realMoji.id,
-                user: {
-                  id: realMoji.user.id,
-                  username: realMoji.user.username,
-                  profilePicture: {
-                    url: (realMoji.user.profilePicture ?? { url: "/raven.png" })
-                      .url,
-                    width:
-                      (realMoji.user.profilePicture ?? { width: -1 }).width,
-                    height:
-                      (realMoji.user.profilePicture ?? { height: -1 }).height,
+          <div key={post.id} class="m-4">
+            <Post
+              user={post.user}
+              region={post.region}
+              posts={[{
+                ...post,
+                primary: {
+                  url: post.photoURL,
+                  width: post.imageWidth,
+                  height: post.imageHeight,
+                },
+                secondary: {
+                  url: post.secondaryPhotoURL,
+                  width: post.secondaryImageWidth,
+                  height: post.secondaryImageHeight,
+                },
+                isLate: post.lateInSeconds > 0,
+                isMain: true,
+                tags: [],
+                comments: [],
+                location: post.location
+                  ? {
+                    latitude: post.location._latitude,
+                    longitude: post.location._longitude,
+                  }
+                  : undefined,
+                takenAt: new Date(post.takenAt._seconds * 1e3).toISOString(),
+                realMojis: post.realMojis.map((realMoji) => ({
+                  id: realMoji.id,
+                  user: {
+                    id: realMoji.user.id,
+                    username: realMoji.user.username,
+                    profilePicture: {
+                      url:
+                        (realMoji.user.profilePicture ?? { url: "/raven.png" })
+                          .url,
+                      width:
+                        (realMoji.user.profilePicture ?? { width: -1 }).width,
+                      height:
+                        (realMoji.user.profilePicture ?? { height: -1 }).height,
+                    },
                   },
-                },
-                media: {
-                  url: realMoji.uri,
-                  width: -1,
-                  height: -1,
-                },
-                type: realMoji.type,
-                emoji: realMoji.emoji,
-                isInstant: false,
-                postedAt: new Date(realMoji.date._seconds * 1e3).toISOString(),
-              })),
-              creationDate: new Date(
-                post.creationDate._seconds * 1e3,
-              ).toISOString(),
-              updatedAt: new Date(post.updatedAt * 1e3).toISOString(),
-            }]}
-          />
+                  media: {
+                    url: realMoji.uri,
+                    width: -1,
+                    height: -1,
+                  },
+                  type: realMoji.type,
+                  emoji: realMoji.emoji,
+                  isInstant: false,
+                  postedAt: new Date(realMoji.date._seconds * 1e3)
+                    .toISOString(),
+                })),
+                creationDate: new Date(
+                  post.creationDate._seconds * 1e3,
+                ).toISOString(),
+                updatedAt: new Date(post.updatedAt * 1e3).toISOString(),
+              }]}
+            />
+          </div>
         ))}
       </div>
     </div>
