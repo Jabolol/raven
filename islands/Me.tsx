@@ -21,14 +21,12 @@ export default function Me() {
   }, []);
 
   useEffect(() => {
-    if (feedList !== null) {
+    if (feedList !== null && feedList.userPosts) {
       setPost(feedList.userPosts.posts[index]);
     }
   }, [index, feedList]);
 
-  if (
-    user === null || friendList === null || feedList === null || post === null
-  ) {
+  if (user === null || friendList === null || feedList === null) {
     return <Spinner />;
   }
 
@@ -49,7 +47,7 @@ export default function Me() {
         <p className="text-lg mb-2">@{user.username}</p>
         <p className="text-lg mb-4">{user.biography}</p>
       </div>
-      {feedList.userPosts.posts.length > 0 && (
+      {feedList.userPosts && feedList.userPosts.posts.length > 0 && post && (
         <div class="bg-gray-100 dark:bg-gray-900 p-4 pb-8 mt-4 rounded-lg overflow-x-auto flex flex-col w-max-md w-full">
           <div class="flex justify-between">
             <h2 className="text-lg font-semibold mb-2">
@@ -73,7 +71,7 @@ export default function Me() {
                     : ""
                 }`}
                 onClick={() => {
-                  if (index < feedList.userPosts.posts.length - 1) {
+                  if (index < feedList.userPosts!.posts.length - 1) {
                     setIndex((i) => i + 1);
                   }
                 }}
