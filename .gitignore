@@ -6,3 +6,6 @@
 .env.local
 
 .vscode
+
+# Ignore fresh build directory
+_fresh/
