@@ -92,7 +92,7 @@ export type FeedResp = {
       creationDate: string;
       updatedAt: string;
     }[];
-  };
+  } | null;
   friendsPosts: {
     user: {
       id: string;
@@ -503,4 +503,4 @@ export type Posts = FeedResp["friendsPosts"][number]["posts"][number];
 
 export type FriendEntry = FeedResp["friendsPosts"][number];
 
-export type SelfPost = FeedResp["userPosts"]["posts"][number];
+export type SelfPost = NonNullable<FeedResp["userPosts"]>["posts"][number];
