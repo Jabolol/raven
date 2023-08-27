@@ -1,18 +1,34 @@
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import Spinner from "~/components/Spinner.tsx";
 import { fetchMe, me } from "~/state/me.ts";
+import { feed, fetchFeed } from "~/state/feed.ts";
 import { fetchFriends, friends } from "~/state/friends.ts";
+import Post from "~/islands/Post.tsx";
+import IconArrowBigLeft from "icons/arrow-big-left.tsx";
+import IconArrowBigRight from "icons/arrow-big-right.tsx";
+import { type SelfPost } from "~/types.ts";
 
 export default function Me() {
-  useEffect(() => {
-    fetchMe();
-    fetchFriends();
-  }, []);
+  const [index, setIndex] = useState<number>(0);
+  const [post, setPost] = useState<SelfPost | null>(null);
 
   const user = me.value;
+  const feedList = feed.value;
   const friendList = friends.value;
 
-  if (user === null || friendList === null) {
+  useEffect(() => {
+    (async () => await Promise.all([fetchMe(), fetchFeed(), fetchFriends()]))();
+  }, []);
+
+  useEffect(() => {
+    if (feedList !== null) {
+      setPost(feedList.userPosts.posts[index]);
+    }
+  }, [index, feedList]);
+
+  if (
+    user === null || friendList === null || feedList === null || post === null
+  ) {
     return <Spinner />;
   }
 
@@ -22,7 +38,7 @@ export default function Me() {
         <img
           src={(user.profilePicture ?? { url: "/raven.png" }).url}
           alt="Profile"
-          className="w-full h-auto rounded-md"
+          className="w-full h-auto rounded-lg"
           onError={(d) => {
             (d.target as HTMLImageElement).src = "/raven.png";
           }}
@@ -33,8 +49,48 @@ export default function Me() {
         <p className="text-lg mb-2">@{user.username}</p>
         <p className="text-lg mb-4">{user.biography}</p>
       </div>
-      {friendList.data.length && (
-        <div className="bg-gray-100 dark:bg-gray-900 p-4 mt-4 rounded-md">
+      {feedList.userPosts.posts.length > 0 && (
+        <div class="bg-gray-100 dark:bg-gray-900 p-4 pb-8 mt-4 rounded-lg overflow-x-auto flex flex-col w-max-md w-full">
+          <div class="flex justify-between">
+            <h2 className="text-lg font-semibold mb-2">
+              Posts ({feedList.userPosts.posts.length})
+            </h2>
+            <div class="flex gap-2">
+              <IconArrowBigLeft
+                class={`cursor-pointer ${
+                  index === 0 ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => {
+                  if (index > 0) {
+                    setIndex((i) => i - 1);
+                  }
+                }}
+              />
+              <IconArrowBigRight
+                class={`cursor-pointer ${
+                  index === feedList.userPosts.posts.length - 1
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+                onClick={() => {
+                  if (index < feedList.userPosts.posts.length - 1) {
+                    setIndex((i) => i + 1);
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <div>
+            <Post
+              user={feedList.userPosts.user}
+              region={feedList.userPosts.region}
+              posts={[post]}
+            />
+          </div>
+        </div>
+      )}
+      {friendList.data.length > 0 && (
+        <div className="bg-gray-100 dark:bg-gray-900 p-4 mt-4 rounded-lg">
           <h2 className="text-lg font-semibold mb-2">
             Friends ({friendList.data.length})
           </h2>
@@ -45,20 +101,20 @@ export default function Me() {
                   <img
                     src={(friend.profilePicture ?? { url: "/raven.png" }).url}
                     alt={friend.fullname}
-                    className="w-full h-auto rounded-md"
+                    className="w-full h-auto rounded-lg"
                     onError={(d) => {
                       (d.target as HTMLImageElement).src = "/raven.png";
                     }}
                   />
-                  <p className="text-xs mt-1">@{friend.username}</p>
+                  <p className="text-md mt-1">@{friend.username}</p>
                 </div>
               </a>
             ))}
           </div>
         </div>
       )}
-      {user.realmojis.length && (
-        <div className="bg-gray-100 dark:bg-gray-900 p-4 mt-4 rounded-md">
+      {user.realmojis.length > 0 && (
+        <div className="bg-gray-100 dark:bg-gray-900 p-4 mt-4 rounded-lg">
           <h2 className="text-lg font-semibold mb-2">
             Realmojis ({user.realmojis.length})
           </h2>
@@ -73,12 +129,12 @@ export default function Me() {
                 <img
                   src={realmoji.media.url}
                   alt="Realmoji"
-                  className="w-full h-auto rounded-md"
+                  className="w-full h-auto rounded-lg"
                   onError={(d) => {
                     (d.target as HTMLImageElement).src = "/raven.png";
                   }}
                 />
-                <p className="text-xs mt-1">{realmoji.emoji}</p>
+                <p className="text-md mt-1">{realmoji.emoji}</p>
               </div>
             ))}
           </div>
