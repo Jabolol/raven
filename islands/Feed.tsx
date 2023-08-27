@@ -24,12 +24,14 @@ export default function Feed() {
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="pb-4">
-        {feed.value.friendsPosts.reverse().map((post) => (
-          <Post
-            user={post.user}
-            region={post.region}
-            posts={post.posts}
-          />
+        {feed.value.friendsPosts.reverse().map((post, id) => (
+          <div key={`${post.momentId}-${id}`} class="m-4">
+            <Post
+              user={post.user}
+              region={post.region}
+              posts={post.posts}
+            />
+          </div>
         ))}
       </div>
     </div>
