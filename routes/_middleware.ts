@@ -4,10 +4,15 @@ export async function handler(
   req: Request,
   ctx: MiddlewareHandlerContext,
 ) {
-  const kv = await Deno.openKv();
   const response = await ctx.next();
+
+  if (ctx.destination !== "route") {
+    return response;
+  }
+
+  const kv = await Deno.openKv();
   const path = new URL(req.url).pathname.split("/")[1] || "/";
-  const blacklist = /(\.(ico|png|svg|webmanifest|js|json))|api|_frsh/;
+  const blacklist = /api/;
   const visitsKey = [
     "visits",
     "total",
