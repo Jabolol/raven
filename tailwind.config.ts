@@ -1,12 +1,14 @@
+import { type Config } from "tailwindcss";
 import * as colors from "twind/colors";
-import { Options } from "$fresh/plugins/twind.ts";
 
 export default {
-  selfURL: import.meta.url,
+  content: [
+    "{routes,islands,components}/**/*.{ts,tsx}",
+  ],
   darkMode: "class",
   theme: {
     extend: {
       colors,
     },
   },
-} as Options;
+} satisfies Config;
