@@ -2,79 +2,80 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_404.tsx";
-import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/_layout.tsx";
-import * as $3 from "./routes/_middleware.ts";
-import * as $4 from "./routes/api/add.ts";
-import * as $5 from "./routes/api/changelog.ts";
-import * as $6 from "./routes/api/discovery.ts";
-import * as $7 from "./routes/api/feed.ts";
-import * as $8 from "./routes/api/friends.ts";
-import * as $9 from "./routes/api/me.ts";
-import * as $10 from "./routes/api/refresh.ts";
-import * as $11 from "./routes/api/send.ts";
-import * as $12 from "./routes/api/stats.ts";
-import * as $13 from "./routes/api/user.ts";
-import * as $14 from "./routes/api/verify.ts";
-import * as $15 from "./routes/discovery.tsx";
-import * as $16 from "./routes/index.tsx";
-import * as $17 from "./routes/me.tsx";
-import * as $18 from "./routes/stats.tsx";
-import * as $19 from "./routes/user/[id].tsx";
-import * as $$0 from "./islands/App.tsx";
-import * as $$1 from "./islands/Changelog.tsx";
-import * as $$2 from "./islands/Comments.tsx";
-import * as $$3 from "./islands/Data.tsx";
-import * as $$4 from "./islands/Discovery.tsx";
-import * as $$5 from "./islands/Entry.tsx";
-import * as $$6 from "./islands/Error.tsx";
-import * as $$7 from "./islands/Feed.tsx";
-import * as $$8 from "./islands/Login.tsx";
-import * as $$9 from "./islands/Me.tsx";
-import * as $$10 from "./islands/Navbar.tsx";
-import * as $$11 from "./islands/Post.tsx";
-import * as $$12 from "./islands/User.tsx";
+import * as $_404 from "./routes/_404.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $_middleware from "./routes/_middleware.ts";
+import * as $api_add from "./routes/api/add.ts";
+import * as $api_changelog from "./routes/api/changelog.ts";
+import * as $api_discovery from "./routes/api/discovery.ts";
+import * as $api_feed from "./routes/api/feed.ts";
+import * as $api_friends from "./routes/api/friends.ts";
+import * as $api_me from "./routes/api/me.ts";
+import * as $api_refresh from "./routes/api/refresh.ts";
+import * as $api_send from "./routes/api/send.ts";
+import * as $api_stats from "./routes/api/stats.ts";
+import * as $api_user from "./routes/api/user.ts";
+import * as $api_verify from "./routes/api/verify.ts";
+import * as $discovery from "./routes/discovery.tsx";
+import * as $index from "./routes/index.tsx";
+import * as $me from "./routes/me.tsx";
+import * as $stats from "./routes/stats.tsx";
+import * as $user_id_ from "./routes/user/[id].tsx";
+import * as $App from "./islands/App.tsx";
+import * as $Changelog from "./islands/Changelog.tsx";
+import * as $Comments from "./islands/Comments.tsx";
+import * as $Data from "./islands/Data.tsx";
+import * as $Discovery from "./islands/Discovery.tsx";
+import * as $Entry from "./islands/Entry.tsx";
+import * as $Error from "./islands/Error.tsx";
+import * as $Feed from "./islands/Feed.tsx";
+import * as $Login from "./islands/Login.tsx";
+import * as $Me from "./islands/Me.tsx";
+import * as $Navbar from "./islands/Navbar.tsx";
+import * as $Post from "./islands/Post.tsx";
+import * as $User from "./islands/User.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/_404.tsx": $0,
-    "./routes/_app.tsx": $1,
-    "./routes/_layout.tsx": $2,
-    "./routes/_middleware.ts": $3,
-    "./routes/api/add.ts": $4,
-    "./routes/api/changelog.ts": $5,
-    "./routes/api/discovery.ts": $6,
-    "./routes/api/feed.ts": $7,
-    "./routes/api/friends.ts": $8,
-    "./routes/api/me.ts": $9,
-    "./routes/api/refresh.ts": $10,
-    "./routes/api/send.ts": $11,
-    "./routes/api/stats.ts": $12,
-    "./routes/api/user.ts": $13,
-    "./routes/api/verify.ts": $14,
-    "./routes/discovery.tsx": $15,
-    "./routes/index.tsx": $16,
-    "./routes/me.tsx": $17,
-    "./routes/stats.tsx": $18,
-    "./routes/user/[id].tsx": $19,
+    "./routes/_404.tsx": $_404,
+    "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/_middleware.ts": $_middleware,
+    "./routes/api/add.ts": $api_add,
+    "./routes/api/changelog.ts": $api_changelog,
+    "./routes/api/discovery.ts": $api_discovery,
+    "./routes/api/feed.ts": $api_feed,
+    "./routes/api/friends.ts": $api_friends,
+    "./routes/api/me.ts": $api_me,
+    "./routes/api/refresh.ts": $api_refresh,
+    "./routes/api/send.ts": $api_send,
+    "./routes/api/stats.ts": $api_stats,
+    "./routes/api/user.ts": $api_user,
+    "./routes/api/verify.ts": $api_verify,
+    "./routes/discovery.tsx": $discovery,
+    "./routes/index.tsx": $index,
+    "./routes/me.tsx": $me,
+    "./routes/stats.tsx": $stats,
+    "./routes/user/[id].tsx": $user_id_,
   },
   islands: {
-    "./islands/App.tsx": $$0,
-    "./islands/Changelog.tsx": $$1,
-    "./islands/Comments.tsx": $$2,
-    "./islands/Data.tsx": $$3,
-    "./islands/Discovery.tsx": $$4,
-    "./islands/Entry.tsx": $$5,
-    "./islands/Error.tsx": $$6,
-    "./islands/Feed.tsx": $$7,
-    "./islands/Login.tsx": $$8,
-    "./islands/Me.tsx": $$9,
-    "./islands/Navbar.tsx": $$10,
-    "./islands/Post.tsx": $$11,
-    "./islands/User.tsx": $$12,
+    "./islands/App.tsx": $App,
+    "./islands/Changelog.tsx": $Changelog,
+    "./islands/Comments.tsx": $Comments,
+    "./islands/Data.tsx": $Data,
+    "./islands/Discovery.tsx": $Discovery,
+    "./islands/Entry.tsx": $Entry,
+    "./islands/Error.tsx": $Error,
+    "./islands/Feed.tsx": $Feed,
+    "./islands/Login.tsx": $Login,
+    "./islands/Me.tsx": $Me,
+    "./islands/Navbar.tsx": $Navbar,
+    "./islands/Post.tsx": $Post,
+    "./islands/User.tsx": $User,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
