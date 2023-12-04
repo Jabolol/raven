@@ -1,24 +1,15 @@
 {
+  "nodeModulesDir": true,
   "lock": false,
   "tasks": {
-    "start": "deno run -A --unstable --watch=static/,routes/ dev.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update .",
-    "build": "deno run -A dev.ts build",
-    "preview": "deno run -A main.ts"
+    "start": "deno run --env -A --unstable --watch=static/,routes/ dev.ts",
+    "update": "deno run --env -A -r https://fresh.deno.dev/update .",
+    "build": "deno run --env -A --unstable dev.ts build",
+    "preview": "deno run --env -A --unstable main.ts"
   },
-  "lint": {
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
-    },
-    "exclude": [
-      "_fresh"
-    ]
-  },
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
   "imports": {
-    "$fresh/": "https://raw.githubusercontent.com/Jabolol/fresh/remote-addr/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.0/",
     "preact": "https://esm.sh/preact@10.15.1",
     "preact/": "https://esm.sh/preact@10.15.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
@@ -28,18 +19,14 @@
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.193.0/",
     "icons/": "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/",
-    "ga4/": "https://deno.land/x/fresh_ga4@0.0.2/",
+    "ga4/": "https://raw.githubusercontent.com/Jabolol/ga4/main/",
     "std/": "https://deno.land/std@0.197.0/",
     "charts/": "https://deno.land/x/fresh_charts@0.3.1/",
+    "tailwindcss": "npm:tailwindcss@3.3.5",
+    "tailwindcss/": "npm:/tailwindcss@3.3.5/",
+    "tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
     "~/": "./"
   },
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
-  "fmt": {
-    "exclude": [
-      "_fresh"
-    ]
-  }
+  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
+  "exclude": ["**/_fresh/*"]
 }
