@@ -5,7 +5,7 @@ export type EntryProps = {
   placeholder: string;
   buttonText: string;
   disabled: boolean;
-  handler: (...args: unknown[]) => void;
+  handler: (retry?: boolean) => void;
 };
 
 export type Auth = {
