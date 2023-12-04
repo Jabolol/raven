@@ -49,11 +49,6 @@ export default function Navbar() {
             className="cursor-pointer"
           />
           {isLogged && (
-            <a href="/discovery">
-              <IconWorld className="w-6 h-6 rounded-full cursor-pointer" />
-            </a>
-          )}
-          {isLogged && (
             <a href="/stats">
               <IconChartBar className="w-6 h-6 rounded-full cursor-pointer" />
             </a>
