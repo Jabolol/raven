@@ -9,3 +9,6 @@
 
 # Ignore fresh build directory
 _fresh/
+
+# Needed after tailwind migration
+node_modules/
