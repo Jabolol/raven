@@ -1,6 +1,6 @@
 /// <reference lib="deno.unstable" />
 
-import { HandlerContext } from "$fresh/server.ts";
+import { FreshContext } from "$fresh/server.ts";
 import {
   type ChangeLogResponse,
   type GitHubCommits,
@@ -10,10 +10,15 @@ import {
 
 export const handler = async (
   req: Request,
-  _ctx: HandlerContext,
+  _ctx: FreshContext,
 ): Promise<Response> => {
   if (req.method !== "GET") {
-    return new Response(null, { status: 405 });
+    return new Response(
+      JSON.stringify({
+        error: "Method not allowed",
+      }),
+      { status: 405 },
+    );
   }
 
   const kv = await Deno.openKv();
@@ -43,7 +48,12 @@ export const handler = async (
 
     if (!deploymentRequest.ok) {
       kv.close();
-      return new Response(null, { status: 500 });
+      return new Response(
+        JSON.stringify({
+          error: await deploymentRequest.json(),
+        }, null, 2),
+        { status: 500 },
+      );
     }
 
     allDeployments = await deploymentRequest.json() as GitHubDeployments;
@@ -87,7 +97,12 @@ export const handler = async (
 
   if (!commitsRequest.ok) {
     kv.close();
-    return new Response(null, { status: 500 });
+    return new Response(
+      JSON.stringify({
+        error: await commitsRequest.json(),
+      }, null, 2),
+      { status: 500 },
+    );
   }
 
   const commits = await commitsRequest.json() as GitHubCommits;

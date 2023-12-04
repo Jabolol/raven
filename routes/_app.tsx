@@ -1,7 +1,7 @@
-import { AppProps } from "$fresh/server.ts";
+import { PageProps } from "$fresh/server.ts";
 import { asset, Head } from "$fresh/runtime.ts";
 
-export default function ({ Component }: AppProps) {
+export default function ({ Component }: PageProps) {
   return (
     <>
       <Head>
@@ -29,6 +29,7 @@ export default function ({ Component }: AppProps) {
         <meta property="twitter:image" content={asset(`/raven.png`)} />
         <meta name="theme-color" content="#27272A" />
         <link rel="icon" type="image/svg" href={asset("/raven.png")} />
+        <link rel="stylesheet" href="/styles.css" />
       </Head>
       <Component />
     </>

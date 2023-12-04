@@ -1,10 +1,10 @@
 import { DAY } from "std/datetime/constants.ts";
 import { chunk } from "std/collections/chunk.ts";
-import { HandlerContext } from "$fresh/server.ts";
+import { FreshContext } from "$fresh/server.ts";
 
 export const handler = async (
   req: Request,
-  _ctx: HandlerContext,
+  _ctx: FreshContext,
 ): Promise<Response> => {
   if (req.method !== "GET") {
     return new Response(null, { status: 405 });
