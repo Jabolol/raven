@@ -1,15 +1,15 @@
 import { useState } from "preact/hooks";
 import Entry from "~/islands/Entry.tsx";
-import { login } from "~/state/auth.ts";
-import Changelog from "~/islands/Changelog.tsx";
+import { login, refresh } from "~/state/auth.ts";
 import Error from "~/islands/Error.tsx";
 
 export default function Login() {
   const [disabled, setDisabled] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   const [session, setSession] = useState<string>("");
+  const [isRetry, setIsRetry] = useState<boolean>(false);
 
-  const handleLogin = async () => {
+  const handleLogin = async (retry = false): Promise<void> => {
     const element = document.getElementById("login-entry") as
       | HTMLInputElement
       | null;
@@ -22,18 +22,28 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ phoneNumber: element.value }),
+      body: JSON.stringify({ phoneNumber: element.value, retry }),
     });
 
+    const res = await data.json();
+
+    const err = res as { error?: { message: string } };
+
     if (!data.ok) {
-      return setError(
-        (await data.json() as { error: { message: string } }).error.message,
-      );
+      if (!retry) {
+        return handleLogin(true);
+      }
+      return setError((err.error ?? { message: "UNKNOWN ERROR" }).message);
     }
 
-    const { sessionInfo } = await data.json();
-    setSession(sessionInfo);
+    const payload = res as {
+      sessionInfo: string;
+      vonageRequestId: string;
+    };
+    setSession(!isRetry ? payload.sessionInfo : payload.vonageRequestId);
+    console.log({ session });
     setDisabled(false);
+    setIsRetry(retry);
   };
 
   const handleVerify = async () => {
@@ -53,13 +63,24 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ sessionInfo: session, code: element.value }),
+      body: JSON.stringify({
+        sessionInfo: session,
+        code: element.value,
+        isRetry,
+      }),
     });
 
+    const res = await data.json();
+
+    const err = res as { error?: { message: string } };
+
     if (!data.ok) {
-      return setError(JSON.stringify(await data.json(), null, 2));
+      return setError((err.error ?? { message: "UNKNOWN ERROR" }).message);
     }
-    login(await data.json());
+    login(res);
+    if (isRetry) {
+      await refresh();
+    }
     setDisabled(true);
   };
 
@@ -84,7 +105,6 @@ export default function Login() {
         disabled={disabled}
         handler={handleVerify}
       />
-      <Changelog />
     </div>
   );
 }

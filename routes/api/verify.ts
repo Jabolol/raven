@@ -1,20 +1,115 @@
-import { HandlerContext } from "$fresh/server.ts";
+import { FreshContext } from "$fresh/server.ts";
 
 export const handler = async (
   req: Request,
-  _ctx: HandlerContext,
+  _ctx: FreshContext,
 ): Promise<Response> => {
   if (req.method !== "POST") {
-    return new Response(null, { status: 405 });
+    return new Response(
+      JSON.stringify({
+        error: "Method not allowed",
+      }),
+      { status: 405, headers: { "Content-Type": "application/json" } },
+    );
   }
 
-  const { code, sessionInfo } = await req.json() as {
+  const { code, sessionInfo, isRetry } = await req.json() as {
     code?: string;
     sessionInfo?: string;
+    isRetry?: boolean;
   };
 
   if (!code || !sessionInfo) {
-    return new Response(null, { status: 400 });
+    return new Response(
+      JSON.stringify({
+        error: "Missing code or sessionInfo",
+      }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
+  if (isRetry) {
+    const vonageResponse = await fetch(
+      "https://auth.bereal.team/api/vonage/check-code",
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "user-agent": "BeReal/7242 CFNetwork/1333.0.4 Darwin/21.5.0",
+          "accept-language": "en-US,en;q=0.9",
+        },
+        body: JSON.stringify({
+          code,
+          vonageRequestId: sessionInfo,
+        }),
+      },
+    );
+
+    if (!vonageResponse.ok) {
+      return new Response(
+        JSON.stringify({ error: await vonageResponse.json() }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    }
+
+    const { token } = await vonageResponse.json() as {
+      token: string;
+    };
+
+    const googleResponse = await fetch(
+      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          token,
+          returnSecureToken: true,
+        }),
+      },
+    );
+
+    if (!googleResponse.ok) {
+      return new Response(
+        JSON.stringify({ error: await googleResponse.json() }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    }
+
+    const raw = await googleResponse.json();
+
+    const { kind, idToken, refreshToken, expiresIn, isNewUser } = raw as {
+      kind: string;
+      idToken: string;
+      refreshToken: string;
+      expiresIn: string;
+      isNewUser: boolean;
+    };
+
+    return new Response(
+      JSON.stringify({
+        access_token: idToken,
+        refresh_token: refreshToken,
+        token_type: kind,
+        expiration: +expiresIn * 1000,
+        is_new_user: isNewUser,
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
   }
 
   const fireResponse = await fetch(
@@ -44,9 +139,7 @@ export const handler = async (
 
   if (!fireResponse.ok) {
     return new Response(
-      JSON.stringify(
-        await fireResponse.json(),
-      ),
+      JSON.stringify({ error: await fireResponse.json() }),
       {
         status: 400,
         headers: {
@@ -63,7 +156,12 @@ export const handler = async (
   };
 
   if (!refreshToken || !localId) {
-    return new Response(null, { status: 400 });
+    return new Response(
+      JSON.stringify({
+        error: "Missing refreshToken or localId",
+      }),
+      { status: 400 },
+    );
   }
 
   const tokenResponse = await fetch(
@@ -91,7 +189,7 @@ export const handler = async (
   if (!tokenResponse.ok) {
     return new Response(
       JSON.stringify(
-        await tokenResponse.json(),
+        { error: await tokenResponse.json() },
       ),
       {
         status: 400,
@@ -137,7 +235,7 @@ export const handler = async (
   if (!grantResponse.ok) {
     return new Response(
       JSON.stringify(
-        await grantResponse.json(),
+        { error: await grantResponse.json() },
       ),
       {
         status: 400,
@@ -150,15 +248,11 @@ export const handler = async (
 
   const { access_token, refresh_token, token_type, expires_in } =
     await grantResponse.json() as {
-      access_token?: string;
-      refresh_token?: string;
-      token_type?: string;
-      expires_in?: number;
+      access_token: string;
+      refresh_token: string;
+      token_type: string;
+      expires_in: number;
     };
-
-  if (!access_token || !refresh_token || !token_type || !expires_in) {
-    return new Response(null, { status: 400 });
-  }
 
   return new Response(
     JSON.stringify({
