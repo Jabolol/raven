@@ -29,7 +29,7 @@ export default function Entry(
           className={`w-full py-3 rounded-md bg-black text-white border-white dark:bg-white dark:border-black dark:text-black ${
             disabled ? "opacity-50 cursor-not-allowed" : ""
           }`}
-          onClick={handler}
+          onClick={() => handler()}
         >
           {buttonText}
         </button>
