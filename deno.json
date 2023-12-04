@@ -4,7 +4,7 @@
   "tasks": {
     "start": "deno run --env -A --unstable --watch=static/,routes/ dev.ts",
     "update": "deno run --env -A -r https://fresh.deno.dev/update .",
-    "build": "deno run --env -A --unstable dev.ts build",
+    "build": "deno run -A --unstable dev.ts build",
     "preview": "deno run --env -A --unstable main.ts"
   },
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
