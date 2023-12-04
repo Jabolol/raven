@@ -1,6 +1,7 @@
 import { Chart } from "charts/island.tsx";
 import { useEffect, useState } from "preact/hooks";
 import Spinner from "~/components/Spinner.tsx";
+import Changelog from "~/islands/Changelog.tsx";
 
 export default function Data() {
   const [data, setData] = useState<
@@ -104,6 +105,7 @@ export default function Data() {
           />
         </div>
       </div>
+      <Changelog />
     </div>
   );
 }
