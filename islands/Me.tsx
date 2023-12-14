@@ -6,11 +6,15 @@ import { fetchFriends, friends } from "~/state/friends.ts";
 import Post from "~/islands/Post.tsx";
 import IconArrowBigLeft from "icons/arrow-big-left.tsx";
 import IconArrowBigRight from "icons/arrow-big-right.tsx";
+import IconCircleCheck from "icons/circle-check.tsx";
 import { type SelfPost } from "~/types.ts";
+import { getAuth } from "~/state/auth.ts";
 
 export default function Me() {
   const [index, setIndex] = useState<number>(0);
   const [post, setPost] = useState<SelfPost | null>(null);
+  const [active, setActive] = useState<boolean>(false);
+  const [reactionId, setReactionId] = useState<string>("");
 
   const user = me.value;
   const feedList = feed.value;
@@ -122,12 +126,39 @@ export default function Me() {
             ) => (
               <div
                 key={realmoji.id}
-                className="p-2 rounded-lg bg-white dark:bg-gray-800"
+                onClick={() => {
+                  if (active) {
+                    setActive(false);
+                    setReactionId(realmoji.id);
+                    fetch("/api/reactAll", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        emoji: realmoji.emoji,
+                        access_token: getAuth()?.access_token,
+                      }),
+                    });
+                  }
+                }}
+                className={`p-2 rounded-lg bg-white dark:bg-gray-800 relative ${
+                  active ? "hover:bg-gray-800 hover:dark:bg-white" : ""
+                }`}
               >
+                <div
+                  className={`${
+                    reactionId === realmoji.id ? "opacity-100" : "opacity-0"
+                  } absolute right-0 mt-2 mr-4 dark:bg-gray-800 bg-white rounded-md p-1 dark:text-white text-gray-800`}
+                >
+                  <IconCircleCheck />
+                </div>
                 <img
                   src={realmoji.media.url}
                   alt="Realmoji"
-                  className="w-full h-auto rounded-lg"
+                  className={`w-full h-auto rounded-lg ${
+                    active ? "cursor-pointer" : ""
+                  }`}
                   onError={(d) => {
                     (d.target as HTMLImageElement).src = "/raven.png";
                   }}
@@ -135,6 +166,18 @@ export default function Me() {
                 <p className="text-md mt-1">{realmoji.emoji}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-4 flex">
+            <button
+              className={`w-full py-3 rounded-md ${
+                active
+                  ? "border bg-red-500 border-red-500 text-white"
+                  : "bg-white text-black dark:bg-black border border-white dark:border-white dark:bg-white dark:border-black dark:text-black"
+              } font-xl ${reactionId && "opacity-50 cursor-not-allowed"}`}
+              onClick={() => !reactionId && setActive((a) => !a)}
+            >
+              {active ? "Cancel" : "React to all BeReals"}
+            </button>
           </div>
         </div>
       )}
