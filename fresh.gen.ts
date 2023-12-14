@@ -12,6 +12,8 @@ import * as $api_discovery from "./routes/api/discovery.ts";
 import * as $api_feed from "./routes/api/feed.ts";
 import * as $api_friends from "./routes/api/friends.ts";
 import * as $api_me from "./routes/api/me.ts";
+import * as $api_react from "./routes/api/react.ts";
+import * as $api_reactAll from "./routes/api/reactAll.ts";
 import * as $api_refresh from "./routes/api/refresh.ts";
 import * as $api_send from "./routes/api/send.ts";
 import * as $api_stats from "./routes/api/stats.ts";
@@ -49,6 +51,8 @@ const manifest = {
     "./routes/api/feed.ts": $api_feed,
     "./routes/api/friends.ts": $api_friends,
     "./routes/api/me.ts": $api_me,
+    "./routes/api/react.ts": $api_react,
+    "./routes/api/reactAll.ts": $api_reactAll,
     "./routes/api/refresh.ts": $api_refresh,
     "./routes/api/send.ts": $api_send,
     "./routes/api/stats.ts": $api_stats,
