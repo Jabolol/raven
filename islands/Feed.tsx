@@ -21,10 +21,22 @@ export default function Feed() {
     );
   }
 
+  const sortedFriendsPosts = feed.value.friendsPosts.map((post) => {
+    const posts = post.posts.sort((a, b) =>
+      new Date(a.takenAt).valueOf() - new Date(b.takenAt).valueOf()
+    );
+    return {
+      momentId: post.momentId,
+      user: post.user,
+      region: post.region,
+      posts: posts,
+    };
+  }).toReversed();
+
   return (
     <div className="flex flex-col items-center justify-center h-full">
       <div className="pb-4">
-        {feed.value.friendsPosts.reverse().map((post, id) => (
+        {sortedFriendsPosts.map((post, id) => (
           <div key={`${post.momentId}-${id}`} class="m-4">
             <Post
               user={post.user}
