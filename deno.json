@@ -1,5 +1,4 @@
 {
-  "nodeModulesDir": true,
   "lock": false,
   "tasks": {
     "start": "deno run --env -A --unstable --watch=static/,routes/ dev.ts",
@@ -22,9 +21,9 @@
     "ga4/": "https://raw.githubusercontent.com/Jabolol/ga4/main/",
     "std/": "https://deno.land/std@0.197.0/",
     "charts/": "https://deno.land/x/fresh_charts@0.3.1/",
-    "tailwindcss": "npm:tailwindcss@3.3.5",
-    "tailwindcss/": "npm:/tailwindcss@3.3.5/",
-    "tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
+    "tailwindcss": "npm:tailwindcss@3.3.6",
+    "tailwindcss/": "npm:/tailwindcss@3.3.6/",
+    "tailwindcss/plugin": "npm:tailwindcss@3.3.6/plugin.js",
     "~/": "./"
   },
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
