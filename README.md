@@ -23,12 +23,12 @@ use raven.
 - [x] **screenshot** without notifying the other person
 - [x] save the **original** BeReal and realMojis to your device
 - [x] user **profiles** with detailed information
-- [x] global feed of **recent** BeReals (removed in the official BeReal app)
 - [x] worldwide **usage** statistics per route
 - [x] profile tab with **all** of your friends and realMojis
 - [x] **dark** and **light** mode support
 - [x] **responsive** design for mobile and desktop
 - [x] **fast** and **lightweight** (100 lighthouse score)
+- [x] react to **all** BeReals at once with your realMojis
 
 # screenshots
 
