@@ -28,7 +28,7 @@ use raven.
 - [x] **dark** and **light** mode support
 - [x] **responsive** design for mobile and desktop
 - [x] **fast** and **lightweight** (100 lighthouse score)
-- [x] react to **all** BeReals at once with your realMojis
+- [x] react to **all** BeReals at once (does not overwrite your reactions)
 
 # screenshots
 

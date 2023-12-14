@@ -9,9 +9,10 @@ export const handler = async (
     return new Response(null, { status: 405 });
   }
 
-  const { access_token, emoji } = await req.json() as {
+  const { access_token, emoji, user_id } = await req.json() as {
     access_token?: string;
     emoji?: string;
+    user_id?: string;
   };
 
   if (!access_token || !emoji) {
@@ -45,7 +46,9 @@ export const handler = async (
 
   feed.friendsPosts.reduce(async (prms, batch) => {
     await prms;
-    await batch.posts.reduce(async (prms, post) => {
+    await batch.posts.filter((post) =>
+      post.realMojis.some((reaction) => reaction.user.id !== user_id)
+    ).reduce(async (prms, post) => {
       await prms;
       await fetch(
         `https://mobile.bereal.com/api/content/realmojis?postId=${post.id}&postUserId=${batch.user.id}`,

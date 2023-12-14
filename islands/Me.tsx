@@ -138,6 +138,7 @@ export default function Me() {
                       body: JSON.stringify({
                         emoji: realmoji.emoji,
                         access_token: getAuth()?.access_token,
+                        user_id: user.id,
                       }),
                     });
                   }
