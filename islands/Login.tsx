@@ -41,7 +41,6 @@ export default function Login() {
       vonageRequestId: string;
     };
     setSession(!isRetry ? payload.sessionInfo : payload.vonageRequestId);
-    console.log({ session });
     setDisabled(false);
     setIsRetry(retry);
   };
