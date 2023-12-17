@@ -37,7 +37,7 @@ export default function Feed() {
     <div className="flex flex-col items-center justify-center h-full">
       <div className="pb-4">
         {sortedFriendsPosts.map((post, id) => (
-          <div key={`${post.momentId}-${id}`} class="m-4">
+          <div key={`${post.momentId}-${id}`} class="mx-4">
             <Post
               user={post.user}
               region={post.region}
