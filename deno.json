@@ -6,9 +6,16 @@
     "build": "deno run -A --unstable dev.ts build",
     "preview": "deno run --env -A --unstable main.ts"
   },
-  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
+  },
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.0/",
+    "$fresh/": "https://deno.land/x/fresh@1.6.1/",
     "preact": "https://esm.sh/preact@10.15.1",
     "preact/": "https://esm.sh/preact@10.15.1/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
@@ -21,11 +28,24 @@
     "ga4/": "https://raw.githubusercontent.com/Jabolol/ga4/main/",
     "std/": "https://deno.land/std@0.197.0/",
     "charts/": "https://deno.land/x/fresh_charts@0.3.1/",
-    "tailwindcss": "npm:tailwindcss@3.3.6",
-    "tailwindcss/": "npm:/tailwindcss@3.3.6/",
-    "tailwindcss/plugin": "npm:tailwindcss@3.3.6/plugin.js",
+    "tailwindcss": "npm:tailwindcss@3.4.1",
+    "tailwindcss/": "npm:/tailwindcss@3.4.1/",
+    "tailwindcss/plugin": "npm:tailwindcss@3.4.1/plugin.js",
     "~/": "./"
   },
-  "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
-  "exclude": ["**/_fresh/*"]
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "exclude": [
+    "**/_fresh/*"
+  ],
+  "deploy": {
+    "project": "9ab14b2a-b0d9-4e55-83ec-7f25f7ad1d52",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
+  }
 }
