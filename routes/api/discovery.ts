@@ -21,6 +21,9 @@ export const handler = async (
     {
       headers: {
         authorization: `Bearer ${access_token}`,
+        "bereal-app-version-code": "14549",
+        "bereal-signature": "berealsignature",
+        "bereal-device-id": "berealdeviceid",
       },
     },
   );

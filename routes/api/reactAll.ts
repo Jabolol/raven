@@ -24,6 +24,9 @@ export const handler = async (
     {
       headers: {
         authorization: `Bearer ${access_token}`,
+        "bereal-app-version-code": "14549",
+        "bereal-signature": "berealsignature",
+        "bereal-device-id": "berealdeviceid",
       },
     },
   );
@@ -55,6 +58,9 @@ export const handler = async (
         {
           headers: {
             authorization: `Bearer ${access_token}`,
+            "bereal-app-version-code": "14549",
+            "bereal-signature": "berealsignature",
+            "bereal-device-id": "berealdeviceid",
             "content-type": "application/json",
             "accept": "application/json",
           },

@@ -16,7 +16,7 @@ export const handler = async (
     return new Response(null, { status: 400 });
   }
 
-   const refreshResponse = await fetch(
+  const refreshResponse = await fetch(
     "https://auth.bereal.team/token?grant_type=refresh_token",
     {
       method: "POST",

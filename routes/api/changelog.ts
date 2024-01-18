@@ -49,9 +49,13 @@ export const handler = async (
     if (!deploymentRequest.ok) {
       kv.close();
       return new Response(
-        JSON.stringify({
-          error: await deploymentRequest.json(),
-        }, null, 2),
+        JSON.stringify(
+          {
+            error: await deploymentRequest.json(),
+          },
+          null,
+          2,
+        ),
         { status: 500 },
       );
     }
@@ -98,9 +102,13 @@ export const handler = async (
   if (!commitsRequest.ok) {
     kv.close();
     return new Response(
-      JSON.stringify({
-        error: await commitsRequest.json(),
-      }, null, 2),
+      JSON.stringify(
+        {
+          error: await commitsRequest.json(),
+        },
+        null,
+        2,
+      ),
       { status: 500 },
     );
   }
