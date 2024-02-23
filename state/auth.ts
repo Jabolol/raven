@@ -1,5 +1,6 @@
 import { computed, signal } from "@preact/signals";
 import { type AppState, type Auth, type JWTPayload } from "~/types.ts";
+import { execute } from "~/client.ts";
 
 export const store = signal<AppState>({
   loggedIn: false,
@@ -29,26 +30,13 @@ export const refresh = async () => {
   if (!store.value.loggedIn) {
     return;
   }
-  const req = await fetch("/api/refresh", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      refreshToken: store.value.auth.refresh_token,
-    }),
-  });
-  if (!req.ok) {
+  const result = await execute("refresh", {
+    refreshToken: store.value.auth.refresh_token,
+  }, store.value.auth.access_token);
+  if ("error" in result) {
     return logout();
-  }
-  const { access_token, refresh_token, expires_in } = await req.json() as {
-    access_token?: string;
-    refresh_token?: string;
-    expires_in?: number;
   };
-  if (!access_token || !refresh_token || !expires_in) {
-    return logout();
-  }
+  const { access_token, refresh_token, expires_in } = result.data;
   login({
     ...store.value.auth,
     access_token,

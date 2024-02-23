@@ -1,6 +1,7 @@
 import { computed, signal } from "@preact/signals";
 import { type FriendResp } from "~/types.ts";
 import { getSession, refresh } from "~/state/auth.ts";
+import { execute } from "~/client.ts";
 
 export const store = signal<FriendResp | null>(null);
 
@@ -13,19 +14,10 @@ export const fetchFriend = async (profile_id: string): Promise<void> => {
   if (!auth) {
     return;
   }
-  const resp = await fetch("/api/user", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      profile_id,
-      access_token: auth.access_token,
-    }),
-  });
-  if (!resp.ok) {
+  const result = await execute("user", { profile_id }, auth.access_token);
+  if ("error" in result) {
     await refresh();
     return await fetchFriend(profile_id);
   }
-  store.value = await resp.json();
+  store.value = result.data;
 };
