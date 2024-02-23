@@ -26,7 +26,7 @@ export const handler = async (
   const { key, data } = await req.json();
   const [, token] = req.headers.get("authorization")!.split(" ");
   const result = await perform(key, data, token);
-  return new Response(result.error ? result.error : JSON.stringify(result), {
+  return new Response(JSON.stringify(result), {
     headers: { "content-type": "application/json" },
     status: result.error ? 400 : 200,
   });
