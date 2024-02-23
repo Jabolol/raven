@@ -56,7 +56,11 @@ export default function User({ id }: { id: string }) {
                 if (auth === null) {
                   return;
                 }
-                const data = await execute("user", { profile_id: id }, auth.access_token);
+                const data = await execute(
+                  "user",
+                  { profile_id: id },
+                  auth.access_token,
+                );
                 console.log(data);
                 (evt.target as HTMLButtonElement).disabled = true;
               }}

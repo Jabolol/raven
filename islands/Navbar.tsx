@@ -7,7 +7,7 @@ import IconReload from "icons/reload.tsx";
 import IconArrowBigLeft from "icons/arrow-big-left.tsx";
 import IconUser from "icons/user.tsx";
 import IconChartBar from "icons/chart-bar.tsx";
-import IconSearch from "icons/search.tsx"
+import IconSearch from "icons/search.tsx";
 import { isLoggedIn, logout, store } from "~/state/auth.ts";
 
 export default function Navbar() {
