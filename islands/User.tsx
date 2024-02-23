@@ -2,6 +2,7 @@ import { useEffect } from "preact/hooks";
 import { fetchFriend, user } from "~/state/user.ts";
 import { getSession } from "~/state/auth.ts";
 import Spinner from "~/components/Spinner.tsx";
+import { execute } from "~/client.ts";
 
 export default function User({ id }: { id: string }) {
   useEffect(() => {
@@ -55,17 +56,8 @@ export default function User({ id }: { id: string }) {
                 if (auth === null) {
                   return;
                 }
-                const response = await fetch("/api/add", {
-                  method: "POST",
-                  body: JSON.stringify({
-                    userId: id,
-                    access_token: auth.access_token,
-                  }),
-                });
-                if (!response.ok) {
-                  console.error(response.status, await response.json());
-                  return;
-                }
+                const data = await execute("user", { profile_id: id }, auth.access_token);
+                console.log(data);
                 (evt.target as HTMLButtonElement).disabled = true;
               }}
             >

@@ -7,6 +7,7 @@ import IconReload from "icons/reload.tsx";
 import IconArrowBigLeft from "icons/arrow-big-left.tsx";
 import IconUser from "icons/user.tsx";
 import IconChartBar from "icons/chart-bar.tsx";
+import IconSearch from "icons/search.tsx"
 import { isLoggedIn, logout, store } from "~/state/auth.ts";
 
 export default function Navbar() {
@@ -50,6 +51,11 @@ export default function Navbar() {
           {isLogged && (
             <a href="/stats">
               <IconChartBar className="w-6 h-6 rounded-full cursor-pointer" />
+            </a>
+          )}
+          {isLogged && (
+            <a href="/search">
+              <IconSearch className="w-6 h-6 rounded-full cursor-pointer" />
             </a>
           )}
           {isDarkMode

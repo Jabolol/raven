@@ -39,8 +39,8 @@ export default function Data() {
       borderColor: "#219ebc",
     },
     {
-      label: "/discovery",
-      data: data?.results["discovery"] ?? [],
+      label: "/search",
+      data: data?.results["search"] ?? [],
       borderColor: "#EBB515",
     },
     {
