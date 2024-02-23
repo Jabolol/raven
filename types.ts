@@ -509,7 +509,7 @@ export type SelfPost = NonNullable<FeedResp["userPosts"]>["posts"][number];
 
 type MaybePromise<T> = T | Promise<T>;
 
-type Out<T> = { data: T } | { error: string };
+type Out<T> = { data: T } | { error: unknown };
 
 type Pair<T, K> = {
   in: T;
