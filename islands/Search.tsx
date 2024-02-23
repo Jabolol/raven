@@ -21,7 +21,7 @@ export default function Search() {
 
   return (
     <div className="h-[70vh]">
-      <div className="mx-auto max-w-sm my-4 p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md opacity-50">
+      <div className="mx-6 max-w-sm my-4 p-4 dark:bg-gray-800 border-2 border-gray-800 dark:border-white rounded-md opacity-50">
         <input
           type="text"
           disabled
