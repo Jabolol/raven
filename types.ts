@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type EntryProps = {
   id: string;
   title: string;
@@ -504,3 +506,37 @@ export type Posts = FeedResp["friendsPosts"][number]["posts"][number];
 export type FriendEntry = FeedResp["friendsPosts"][number];
 
 export type SelfPost = NonNullable<FeedResp["userPosts"]>["posts"][number];
+
+type MaybePromise<T> = T | Promise<T>;
+
+type Out<T> = { data: T } | { error: string };
+
+type Pair<T, K> = {
+  in: T;
+  out: Out<K>;
+};
+
+export type APIMap = {
+  search: Pair<{ query: string }, unknown>;
+  feed: Pair<Record<string, never>, FeedResp>;
+  add: Pair<{ userId: string; source: "search" }, unknown>;
+  friends: Pair<Record<string, never>, FriendList>;
+  me: Pair<Record<string, never>, MeResp>;
+  react: Pair<{ emoji: string; postId: string; postUserId: string }, unknown>;
+  refresh: Pair<
+    { refreshToken: string },
+    { access_token: string; refresh_token: string; expires_in: number }
+  >;
+  user: Pair<{ profile_id: string }, FriendResp>;
+};
+
+export type ApiFunction = {
+  [k in keyof APIMap]: (
+    data: APIMap[k]["in"],
+    token: string,
+  ) => MaybePromise<APIMap[k]["out"]>;
+};
+
+export type ApiValidators = {
+  [k in keyof APIMap]: z.ZodType<APIMap[k]["in"]>;
+};
