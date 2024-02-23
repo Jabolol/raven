@@ -73,3 +73,9 @@ Format and lint the code before committing:
 ```sh
 deno fmt && deno lint
 ```
+
+# license
+
+This project is licensed under the [MIT License](./LICENSE). A copy of the
+included license should be provided alongside the source code. If not, you can
+find it [here](https://opensource.org/licenses/MIT).
