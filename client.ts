@@ -16,6 +16,13 @@ export const headers = (_templates: TemplateStringsArray, token: string) => ({
   "User-Agent": "okhttp/4.12.0",
 });
 
+const refresh = () => ({
+  "Accept": "*/*",
+  "User-Agent": `BeReal/8586 CFNetwork/1240.0.4 Darwin/20.6.0`,
+  "x-ios-bundle-identifier": "AlexisBarreyat.BeReal",
+  "Content-Type": "application/json",
+});
+
 export const validators: ApiValidators = {
   search: z.object({
     query: z.string(),
@@ -45,12 +52,20 @@ const generic = async (url: string, token: string, body?: unknown) => {
     url,
     {
       method: body ? "POST" : "GET",
-      headers: headers`${token}`,
+      headers: {
+        ...headers`${token}`,
+        ...url.includes("refresh_token") ? refresh() : {},
+      },
       body: body ? JSON.stringify(body) : undefined,
     },
   );
   if (!result.ok) {
-    return { error: `(${result.status}) failed to fetch \`${result.url}\`` };
+    return {
+      error: {
+        message: `(${result.status}) failed to fetch \`${result.url}\``,
+        data: await result.text(),
+      },
+    };
   }
   return { data: await result.json() };
 };
@@ -90,7 +105,7 @@ const map: ApiFunction = {
     ),
   refresh: ({ refreshToken: refresh_token }, token) =>
     generic(
-      `https://mobile.bereal.com/api/auth/refresh`,
+      `https://auth.bereal.team/token?grant_type=refresh_token`,
       token,
       {
         grant_type: "refresh_token",
@@ -131,7 +146,12 @@ export const execute = async <T extends keyof APIMap>(
     body: JSON.stringify({ key, data }),
   });
   if (!request.ok) {
-    return { error: `(${request.status}) failed to fetch \`${request.url}\`` };
+    return {
+      error: {
+        message: `(${request.status}) failed to fetch \`${request.url}\``,
+        data: await request.text(),
+      },
+    };
   }
   return await request.json();
 };
