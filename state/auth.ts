@@ -35,7 +35,7 @@ export const refresh = async () => {
   }, store.value.auth.access_token);
   if ("error" in result) {
     return logout();
-  };
+  }
   const { access_token, refresh_token, expires_in } = result.data;
   login({
     ...store.value.auth,
