@@ -6,29 +6,21 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
-import * as $api_add from "./routes/api/add.ts";
 import * as $api_changelog from "./routes/api/changelog.ts";
-import * as $api_discovery from "./routes/api/discovery.ts";
-import * as $api_feed from "./routes/api/feed.ts";
-import * as $api_friends from "./routes/api/friends.ts";
-import * as $api_me from "./routes/api/me.ts";
-import * as $api_react from "./routes/api/react.ts";
+import * as $api_execute from "./routes/api/execute.ts";
 import * as $api_reactAll from "./routes/api/reactAll.ts";
-import * as $api_refresh from "./routes/api/refresh.ts";
 import * as $api_send from "./routes/api/send.ts";
 import * as $api_stats from "./routes/api/stats.ts";
-import * as $api_user from "./routes/api/user.ts";
 import * as $api_verify from "./routes/api/verify.ts";
-import * as $discovery from "./routes/discovery.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $me from "./routes/me.tsx";
+import * as $search from "./routes/search.tsx";
 import * as $stats from "./routes/stats.tsx";
 import * as $user_id_ from "./routes/user/[id].tsx";
 import * as $App from "./islands/App.tsx";
 import * as $Changelog from "./islands/Changelog.tsx";
 import * as $Comments from "./islands/Comments.tsx";
 import * as $Data from "./islands/Data.tsx";
-import * as $Discovery from "./islands/Discovery.tsx";
 import * as $Entry from "./islands/Entry.tsx";
 import * as $Error from "./islands/Error.tsx";
 import * as $Feed from "./islands/Feed.tsx";
@@ -36,6 +28,7 @@ import * as $Login from "./islands/Login.tsx";
 import * as $Me from "./islands/Me.tsx";
 import * as $Navbar from "./islands/Navbar.tsx";
 import * as $Post from "./islands/Post.tsx";
+import * as $Search from "./islands/Search.tsx";
 import * as $User from "./islands/User.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -45,22 +38,15 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
     "./routes/_middleware.ts": $_middleware,
-    "./routes/api/add.ts": $api_add,
     "./routes/api/changelog.ts": $api_changelog,
-    "./routes/api/discovery.ts": $api_discovery,
-    "./routes/api/feed.ts": $api_feed,
-    "./routes/api/friends.ts": $api_friends,
-    "./routes/api/me.ts": $api_me,
-    "./routes/api/react.ts": $api_react,
+    "./routes/api/execute.ts": $api_execute,
     "./routes/api/reactAll.ts": $api_reactAll,
-    "./routes/api/refresh.ts": $api_refresh,
     "./routes/api/send.ts": $api_send,
     "./routes/api/stats.ts": $api_stats,
-    "./routes/api/user.ts": $api_user,
     "./routes/api/verify.ts": $api_verify,
-    "./routes/discovery.tsx": $discovery,
     "./routes/index.tsx": $index,
     "./routes/me.tsx": $me,
+    "./routes/search.tsx": $search,
     "./routes/stats.tsx": $stats,
     "./routes/user/[id].tsx": $user_id_,
   },
@@ -69,7 +55,6 @@ const manifest = {
     "./islands/Changelog.tsx": $Changelog,
     "./islands/Comments.tsx": $Comments,
     "./islands/Data.tsx": $Data,
-    "./islands/Discovery.tsx": $Discovery,
     "./islands/Entry.tsx": $Entry,
     "./islands/Error.tsx": $Error,
     "./islands/Feed.tsx": $Feed,
@@ -77,6 +62,7 @@ const manifest = {
     "./islands/Me.tsx": $Me,
     "./islands/Navbar.tsx": $Navbar,
     "./islands/Post.tsx": $Post,
+    "./islands/Search.tsx": $Search,
     "./islands/User.tsx": $User,
   },
   baseUrl: import.meta.url,
