@@ -22,7 +22,7 @@ export const handler = async (
 
   const kv = await Deno.openKv();
 
-  const queries = ["total", "user", "me", "/", "stats", "discovery"].map((
+  const queries = ["total", "user", "me", "/", "stats", "search"].map((
     value,
   ) => ["visits", value]);
 

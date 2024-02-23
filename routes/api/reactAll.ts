@@ -25,8 +25,10 @@ export const handler = async (
       headers: {
         authorization: `Bearer ${access_token}`,
         "bereal-app-version-code": "14549",
-        "bereal-signature": "berealsignature",
-        "bereal-device-id": "berealdeviceid",
+        "bereal-signature":
+          "MToxNzA3NDgwMjI4OvR2hbFOdgnyAz1bfiCp68ul5sVZiHnv+NAZNySEcBfD",
+        "bereal-device-id": "937v3jb942b0h6u9",
+        "bereal-timezone": "Europe/Paris",
       },
     },
   );
@@ -59,8 +61,10 @@ export const handler = async (
           headers: {
             authorization: `Bearer ${access_token}`,
             "bereal-app-version-code": "14549",
-            "bereal-signature": "berealsignature",
-            "bereal-device-id": "berealdeviceid",
+            "bereal-signature":
+              "MToxNzA3NDgwMjI4OvR2hbFOdgnyAz1bfiCp68ul5sVZiHnv+NAZNySEcBfD",
+            "bereal-device-id": "937v3jb942b0h6u9",
+            "bereal-timezone": "Europe/Paris",
             "content-type": "application/json",
             "accept": "application/json",
           },
