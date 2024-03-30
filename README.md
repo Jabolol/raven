@@ -58,6 +58,7 @@ Create and fill in the `.env` file:
 ```sh
 # GitHub API token for fetching the commit changelog
 GITHUB_TOKEN=
+
 # Google Analytics tracking ID (Optional)
 GA4_MEASUREMENT_ID=
 
