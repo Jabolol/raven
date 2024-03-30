@@ -60,7 +60,22 @@ Create and fill in the `.env` file:
 GITHUB_TOKEN=
 # Google Analytics tracking ID (Optional)
 GA4_MEASUREMENT_ID=
+
+# BeReal Signature
+BEREAL_SIGNATURE=
+
+# BeReal Device ID
+BEREAL_DEVICE_ID=
+
+# BeReal Timezone
+BEREAL_TIMEZONE=
 ```
+
+> [!WARNING]\
+> The `BEREAL_SIGNATURE` and `BEREAL_DEVICE_ID` are required for the app to
+> function. You can find them by inspecting the network requests made by the
+> BeReal app in a rooted Android device using
+> [Burp Suite](https://portswigger.net/burp) and [Frida](https://frida.re/).
 
 Run the development server:
 

@@ -7,13 +7,12 @@ export const headers = (_templates: TemplateStringsArray, token: string) => ({
   "Bereal-Device-Language": "en-US",
   "Bereal-App-Version": "1.19.6",
   "Bereal-Os-Version": "10",
-  "Bereal-Device-Id": "7ee4e0f891cca704",
-  "Bereal-Timezone": "Europe/Madrid",
+  "Bereal-Device-Id": Deno.env.get("BEREAL_DEVICE_ID")!,
+  "Bereal-Timezone": Deno.env.get("BEREAL_TIMEZONE")!,
   "Bereal-App-Version-Code": "1631",
-  "Bereal-Signature":
-    "MToxNzA2MDMzNzU0ODg2Oup7dtgGFyaMYEr29QlXEJt44RxF6dBBpN+PpYPz+7Zn",
-  "Authorization": `Bearer ${token}`,
+  "Bereal-Signature": Deno.env.get("BEREAL_SIGNATURE")!,
   "User-Agent": "okhttp/4.12.0",
+  "Authorization": `Bearer ${token}`,
 });
 
 const refresh = () => ({
