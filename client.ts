@@ -8,7 +8,7 @@ export const headers = (_templates: TemplateStringsArray, token: string) => ({
   "Bereal-App-Version": "1.19.6",
   "Bereal-Os-Version": "10",
   "Bereal-Device-Id": Deno.env.get("BEREAL_DEVICE_ID")!,
-  "Bereal-Timezone": "Europe/Paris",
+  "Bereal-Timezone": Deno.env.get("BEREAL_TIMEZONE")!,
   "Bereal-App-Version-Code": "1631",
   "Bereal-Signature": Deno.env.get("BEREAL_SIGNATURE")!,
   "User-Agent": "okhttp/4.12.0",

@@ -66,6 +66,9 @@ BEREAL_SIGNATURE=
 
 # BeReal Device ID
 BEREAL_DEVICE_ID=
+
+# BeReal Timezone
+BEREAL_TIMEZONE=
 ```
 
 > [!WARNING]\
