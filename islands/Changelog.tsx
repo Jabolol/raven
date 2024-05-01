@@ -19,8 +19,8 @@ export default function Changelog() {
   }, []);
 
   return (
-    <>
-      <div className="w-90vw mt-10">
+    <div className="max-w-[50%] flex items-center flex-col">
+      <div className="mt-10">
         <h1 className="text-2xl font-semibold text-center dark:text-white">
           Changelog
         </h1>
@@ -64,6 +64,6 @@ export default function Changelog() {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }

@@ -63,7 +63,7 @@ export const handler = async (
     };
 
     const googleResponse = await fetch(
-      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
+      "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=AIzaSyCgNTZt6gzPMh-2voYXOvrt_UR_gpGl83Q",
       {
         method: "POST",
         body: JSON.stringify({
@@ -113,7 +113,7 @@ export const handler = async (
   }
 
   const fireResponse = await fetch(
-    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPhoneNumber?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
+    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPhoneNumber?key=AIzaSyCgNTZt6gzPMh-2voYXOvrt_UR_gpGl83Q",
     {
       method: "POST",
       headers: {
@@ -165,7 +165,7 @@ export const handler = async (
   }
 
   const tokenResponse = await fetch(
-    "https://securetoken.googleapis.com/v1/token?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
+    "https://securetoken.googleapis.com/v1/token?key=AIzaSyCgNTZt6gzPMh-2voYXOvrt_UR_gpGl83Q",
     {
       method: "POST",
       headers: {
