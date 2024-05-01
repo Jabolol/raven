@@ -63,7 +63,7 @@ export const handler = async (
   }
 
   const receiptResponse = await fetch(
-    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyClient?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
+    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyClient?key=AIzaSyCgNTZt6gzPMh-2voYXOvrt_UR_gpGl83Q",
     {
       method: "POST",
       headers: {
@@ -103,7 +103,7 @@ export const handler = async (
   };
 
   const otpResponse = await fetch(
-    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key=AIzaSyDwjfEeparokD7sXPVQli9NsTuhT6fJ6iA",
+    "https://www.googleapis.com/identitytoolkit/v3/relyingparty/sendVerificationCode?key=AIzaSyCgNTZt6gzPMh-2voYXOvrt_UR_gpGl83Q",
     {
       method: "POST",
       headers: {
