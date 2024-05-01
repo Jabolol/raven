@@ -20,7 +20,7 @@ export default function Changelog() {
 
   return (
     <div className="max-w-[50%] flex items-center flex-col">
-      <div className="bg-red-500 mt-10">
+      <div className="mt-10">
         <h1 className="text-2xl font-semibold text-center dark:text-white">
           Changelog
         </h1>
